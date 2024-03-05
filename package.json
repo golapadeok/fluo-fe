@@ -1,28 +1,42 @@
 {
-  "name": "fluo-fe",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
-  },
-  "dependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
-  },
-  "devDependencies": {
-    "@biomejs/biome": "1.5.3",
-    "@types/node": "^20.11.24",
-    "@types/react": "^18.2.56",
-    "@types/react-dom": "^18.2.19",
-    "@vitejs/plugin-react": "^4.2.1",
-    "autoprefixer": "^10.4.18",
-    "postcss": "^8.4.35",
-    "tailwindcss": "^3.4.1",
-    "typescript": "^5.2.2",
-    "vite": "^5.1.4"
-  }
+	"name": "fluo-fe",
+	"private": true,
+	"version": "0.0.0",
+	"type": "module",
+	"scripts": {
+		"dev": "vite",
+		"build": "tsc && vite build",
+		"lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+		"preview": "vite preview",
+		"prepare": "husky"
+	},
+	"lint-staged": {
+		"*.{js,ts,cjs,mjs,d.cts,d.mts,jsx,tsx,json,jsonc}": [
+			"biome check --files-ignore-unknown=true",
+			"biome check --apply --no-errors-on-unmatched",
+			"biome check --apply --organize-imports-enabled=false --no-errors-on-unmatched",
+			"biome check --apply-unsafe --no-errors-on-unmatched",
+			"biome format --write --no-errors-on-unmatched",
+			"biome lint --apply --no-errors-on-unmatched"
+		],
+		"*": ["biome check --no-errors-on-unmatched --files-ignore-unknown=true"]
+	},
+	"dependencies": {
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "1.5.3",
+		"@types/node": "^20.11.24",
+		"@types/react": "^18.2.56",
+		"@types/react-dom": "^18.2.19",
+		"@vitejs/plugin-react": "^4.2.1",
+		"autoprefixer": "^10.4.18",
+		"husky": "^9.0.11",
+		"lint-staged": "^15.2.2",
+		"postcss": "^8.4.35",
+		"tailwindcss": "^3.4.1",
+		"typescript": "^5.2.2",
+		"vite": "^5.1.4"
+	}
 }
