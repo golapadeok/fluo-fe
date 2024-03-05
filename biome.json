@@ -1,0 +1,27 @@
+{
+	"$schema": "https://biomejs.dev/schemas/1.5.3/schema.json",
+	"formatter": {
+		"include": ["./src/**/*.{js,jsx,ts,tsx}"],
+		"formatWithErrors": true
+	},
+	"organizeImports": {
+		"enabled": true,
+		"include": ["./src/**/*.{js,jsx,ts,tsx}"]
+	},
+	"linter": {
+		"enabled": true,
+		"rules": {
+			"recommended": true,
+			"style": {
+				"useNamingConvention": "warn"
+			},
+			"suspicious": {
+				"noConsoleLog": "warn"
+			},
+			"nursery": {
+				"noUnusedImports": "error",
+				"useImportType": "error"
+			}
+		}
+	}
+}
