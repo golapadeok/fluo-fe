@@ -1,7 +1,13 @@
-import { createRootRoute, Outlet } from "@tanstack/react-router";
+import { createRootRouteWithContext, Outlet } from "@tanstack/react-router";
 import { lazy, Suspense } from "react";
+import type { QueryClient } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
-export const Route = createRootRoute({
+interface RootRouteContext {
+	queryClient: QueryClient;
+}
+
+export const Route = createRootRouteWithContext<RootRouteContext>()({
 	component: Root,
 });
 
@@ -19,8 +25,9 @@ function Root() {
 		<>
 			<Outlet />
 			<Suspense>
-				<TanStackRouterDevtools initialIsOpen={false} />
+				<TanStackRouterDevtools initialIsOpen={false} position="bottom-left" />
 			</Suspense>
+			<ReactQueryDevtools initialIsOpen={false} buttonPosition="bottom-right" />
 		</>
 	);
 }
