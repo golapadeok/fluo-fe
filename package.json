@@ -29,6 +29,7 @@
 		"@tanstack/react-router": "^1.19.1",
 		"@tanstack/router-devtools": "^1.19.1",
 		"@tanstack/router-vite-plugin": "^1.19.0",
+		"axios": "^1.6.7",
 		"class-variance-authority": "^0.7.0",
 		"clsx": "^2.1.0",
 		"lucide-react": "^0.344.0",
