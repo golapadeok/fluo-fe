@@ -1,10 +1,20 @@
+import { routeTree } from "@/routeTree.gen";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { RouterProvider, createRouter } from "@tanstack/react-router";
 import { StrictMode } from "react";
 import reactDom from "react-dom/client";
-import { RouterProvider, createRouter } from "@tanstack/react-router";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 import "@/assets/globalStyle.css";
-import { routeTree } from "@/routeTree.gen";
+
+async function enableMocking() {
+	if (process.env.NODE_ENV !== "development") {
+		return;
+	}
+
+	const { worker } = await import("@/mocks/browser");
+
+	return worker.start();
+}
 
 const queryClient = new QueryClient();
 
@@ -26,11 +36,13 @@ declare module "@tanstack/react-router" {
 const rootElement = document.getElementById("app") as HTMLElement;
 if (!rootElement.innerHTML) {
 	const root = reactDom.createRoot(rootElement);
-	root.render(
-		<StrictMode>
-			<QueryClientProvider client={queryClient}>
-				<RouterProvider router={router} />
-			</QueryClientProvider>
-		</StrictMode>,
+	enableMocking().then(() =>
+		root.render(
+			<StrictMode>
+				<QueryClientProvider client={queryClient}>
+					<RouterProvider router={router} />
+				</QueryClientProvider>
+			</StrictMode>,
+		)
 	);
 }
