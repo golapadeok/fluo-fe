@@ -13,7 +13,7 @@
 import { Route as rootRoute } from "./pages/__root"
 import { Route as AuthRouteImport } from "./pages/auth/route"
 import { Route as IndexImport } from "./pages/index"
-import { Route as WorkspacesWorkspaceIdSettingImport } from "./pages/workspaces/$workspaceId/setting"
+import { Route as WorkspacesWorkspaceIdAdminImport } from "./pages/workspaces/$workspaceId/admin"
 
 // Create/Update Routes
 
@@ -27,11 +27,12 @@ const IndexRoute = IndexImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
-const WorkspacesWorkspaceIdSettingRoute =
-  WorkspacesWorkspaceIdSettingImport.update({
-    path: "/workspaces/$workspaceId/setting",
+const WorkspacesWorkspaceIdAdminRoute = WorkspacesWorkspaceIdAdminImport.update(
+  {
+    path: "/workspaces/$workspaceId/admin",
     getParentRoute: () => rootRoute,
-  } as any)
+  } as any,
+)
 
 // Populate the FileRoutesByPath interface
 
@@ -45,8 +46,8 @@ declare module "@tanstack/react-router" {
       preLoaderRoute: typeof AuthRouteImport
       parentRoute: typeof rootRoute
     }
-    "/workspaces/$workspaceId/setting": {
-      preLoaderRoute: typeof WorkspacesWorkspaceIdSettingImport
+    "/workspaces/$workspaceId/admin": {
+      preLoaderRoute: typeof WorkspacesWorkspaceIdAdminImport
       parentRoute: typeof rootRoute
     }
   }
@@ -57,7 +58,7 @@ declare module "@tanstack/react-router" {
 export const routeTree = rootRoute.addChildren([
   IndexRoute,
   AuthRouteRoute,
-  WorkspacesWorkspaceIdSettingRoute,
+  WorkspacesWorkspaceIdAdminRoute,
 ])
 
 /* prettier-ignore-end */

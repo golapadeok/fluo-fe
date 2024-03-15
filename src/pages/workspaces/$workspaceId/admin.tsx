@@ -1,14 +1,15 @@
+import WorkspaceAdminContent from "@/core/workspace/ui/AdminContent";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/lib/ui/tabs";
 import { createFileRoute } from "@tanstack/react-router";
 import { FileLock2Icon, UserRoundCogIcon } from "lucide-react";
 
-export const Route = createFileRoute("/workspaces/$workspaceId/setting")({
-	component: WorkspaceSettingPage,
+export const Route = createFileRoute("/workspaces/$workspaceId/admin")({
+	component: WorkspaceAdminPage,
 });
 
-function WorkspaceSettingPage() {
+function WorkspaceAdminPage() {
 	return (
-		<main className="p-[32px] max-w-[1084px]">
+		<main className="p-[36px] max-w-[1084px]">
 			<Tabs defaultValue="workspace">
 				<TabsList>
 					<TabsTrigger value="workspace" className="flex gap-[4px]">
@@ -28,11 +29,11 @@ function WorkspaceSettingPage() {
 						권한 설정
 					</TabsTrigger>
 				</TabsList>
-				<TabsContent value="workspace">
-					<div>워크스페이스 설정</div>
+				<TabsContent value="workspace" className="mt-0 pt-[36px]">
+					<WorkspaceAdminContent />
 				</TabsContent>
-				<TabsContent value="credential">
-					<div>권한 설정</div>
+				<TabsContent value="credential" className="mt-0 pt-[36px]">
+					권한 설정
 				</TabsContent>
 			</Tabs>
 		</main>
