@@ -13,6 +13,7 @@
 import { Route as rootRoute } from "./pages/__root"
 import { Route as AuthRouteImport } from "./pages/auth/route"
 import { Route as IndexImport } from "./pages/index"
+import { Route as WorkspacesWorkspaceIdSettingImport } from "./pages/workspaces/$workspaceId/setting"
 
 // Create/Update Routes
 
@@ -26,6 +27,12 @@ const IndexRoute = IndexImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const WorkspacesWorkspaceIdSettingRoute =
+  WorkspacesWorkspaceIdSettingImport.update({
+    path: "/workspaces/$workspaceId/setting",
+    getParentRoute: () => rootRoute,
+  } as any)
+
 // Populate the FileRoutesByPath interface
 
 declare module "@tanstack/react-router" {
@@ -38,11 +45,19 @@ declare module "@tanstack/react-router" {
       preLoaderRoute: typeof AuthRouteImport
       parentRoute: typeof rootRoute
     }
+    "/workspaces/$workspaceId/setting": {
+      preLoaderRoute: typeof WorkspacesWorkspaceIdSettingImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
 // Create and export the route tree
 
-export const routeTree = rootRoute.addChildren([IndexRoute, AuthRouteRoute])
+export const routeTree = rootRoute.addChildren([
+  IndexRoute,
+  AuthRouteRoute,
+  WorkspacesWorkspaceIdSettingRoute,
+])
 
 /* prettier-ignore-end */
