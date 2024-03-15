@@ -14,7 +14,7 @@
 		"rules": {
 			"recommended": true,
 			"style": {
-				"useNamingConvention": "warn"
+				"useNamingConvention": "off"
 			},
 			"suspicious": {
 				"noConsoleLog": "warn"
