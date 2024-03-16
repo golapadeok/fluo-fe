@@ -21,8 +21,9 @@ function SubHeader({
 		<section className="max-w-[1920px] h-[60px] shrink-0 border-b-[zinc-50] border-b border-solid bg-bg-primary">
 			<div className="max-w-[1320px] h-[60px] m-auto flex justify-between items-center">
 				<div
+					id="workspaceInfo"
 					className={`flex items-center gap-[25px] text-title-sm ${
-						isOpen ? "ml-[236px]" : "ml-0"
+						isOpen ? "pl-[236px]" : "pl-0"
 					} transition-all ease-linear relative`}
 				>
 					<button type="button" onClick={onToggle}>
