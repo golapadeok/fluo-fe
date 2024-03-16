@@ -1,24 +1,20 @@
-import type { ReactNode } from "react";
 import { Link } from "@tanstack/react-router";
 import { ChevronsLeft, ChevronsRight, Settings } from "lucide-react";
+import MemberDropDown from "@/core/workspace/ui/MemberDropDown";
 
 type SubHeaderProps = {
 	isOpen: boolean;
-	onToggle: () => void;
-	workspaceInfo: { name: string; id: string };
-	memberDropDown: ReactNode;
-	sideBar: ReactNode;
+	onClickChevronButton: () => void;
+	workspaceData: { name: string; id: string };
 };
 
 function SubHeader({
 	isOpen,
-	onToggle,
-	workspaceInfo,
-	memberDropDown,
-	sideBar,
+	onClickChevronButton,
+	workspaceData,
 }: SubHeaderProps) {
 	return (
-		<section className="max-w-[1920px] h-[60px] shrink-0 border-b-[zinc-50] border-b border-solid bg-bg-primary">
+		<header className="max-w-[1920px] h-[60px] shrink-0 border-b-[zinc-50] border-b border-solid bg-bg-primary">
 			<div className="max-w-[1320px] h-[60px] m-auto flex justify-between items-center">
 				<div
 					id="workspaceInfo"
@@ -26,23 +22,22 @@ function SubHeader({
 						isOpen ? "pl-[236px]" : "pl-0"
 					} transition-all ease-linear relative`}
 				>
-					<button type="button" onClick={onToggle}>
+					<button type="button" onClick={onClickChevronButton}>
 						{isOpen ? <ChevronsLeft /> : <ChevronsRight />}
 					</button>
-					{workspaceInfo.name}
-					{sideBar}
+					{workspaceData.name}
 				</div>
 				<div className="flex items-center gap-[21px]">
-					{memberDropDown}
+					{<MemberDropDown />}
 					<Link
 						to="/workspaces/$workspaceId/admin"
-						params={{ workspaceId: workspaceInfo.id }}
+						params={{ workspaceId: workspaceData.id }}
 					>
 						<Settings className="text-zinc-400" />
 					</Link>
 				</div>
 			</div>
-		</section>
+		</header>
 	);
 }
 

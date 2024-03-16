@@ -8,11 +8,11 @@ import { Users, ChevronDown, ChevronUp } from "lucide-react";
 import { useState } from "react";
 
 function MemberDropDown() {
-	const [openStatus, setOpenStatus] = useState<boolean>(false);
+	const [isOpen, setIsOpen] = useState<boolean>(false);
 	return (
 		<DropdownMenu
 			onOpenChange={(e) => {
-				setOpenStatus(e);
+				setIsOpen(e);
 			}}
 		>
 			<DropdownMenuTrigger asChild>
@@ -22,7 +22,7 @@ function MemberDropDown() {
 							<Users className="w-4 h-4" />
 						</span>
 						{"4"}
-						{openStatus ? (
+						{isOpen ? (
 							<ChevronUp className="w-4 h-4" />
 						) : (
 							<ChevronDown className="w-4 h-4" />
