@@ -23,6 +23,7 @@ import { Route as WorkspacesWorkspaceLayoutWorkspaceIdAdminImport } from "./page
 // Create Virtual Routes
 
 const WorkspacesImport = createFileRoute("/workspaces")()
+import { Route as WorkspacesWorkspaceIdAdminImport } from "./pages/workspaces/$workspaceId/admin"
 
 // Create/Update Routes
 
@@ -63,6 +64,13 @@ const WorkspacesWorkspaceLayoutWorkspaceIdAdminRoute =
     getParentRoute: () => WorkspacesWorkspaceLayoutRoute,
   } as any)
 
+const WorkspacesWorkspaceIdAdminRoute = WorkspacesWorkspaceIdAdminImport.update(
+  {
+    path: "/workspaces/$workspaceId/admin",
+    getParentRoute: () => rootRoute,
+  } as any,
+)
+
 // Populate the FileRoutesByPath interface
 
 declare module "@tanstack/react-router" {
@@ -95,6 +103,10 @@ declare module "@tanstack/react-router" {
       preLoaderRoute: typeof WorkspacesWorkspaceLayoutWorkspaceIdIndexImport
       parentRoute: typeof WorkspacesWorkspaceLayoutImport
     }
+    "/workspaces/$workspaceId/admin": {
+      preLoaderRoute: typeof WorkspacesWorkspaceIdAdminImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -110,6 +122,7 @@ export const routeTree = rootRoute.addChildren([
     ]),
     WorkspacesIndexRoute,
   ]),
+  WorkspacesWorkspaceIdAdminRoute,
 ])
 
 /* prettier-ignore-end */

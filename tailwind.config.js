@@ -31,8 +31,8 @@ module.exports = {
 					200: "#C7D2FE",
 					300: "#A5B4FC",
 					400: "#818CF8",
-					500: "#6366F1",
-					600: "#4F46E5",
+					500: "var(--main-500)",
+					600: "var(--main-600)",
 					700: "#4338CA",
 					800: "#3730A3",
 					900: "#312E81",
@@ -85,14 +85,14 @@ module.exports = {
 			 * text-카테고리-사이즈 식으로 사용
 			 */
 			fontSize: {
-				"title-lg": ["48px", { fontWeight: "600", lineHeight: "72px" }],
-				"title-md": ["36px", { fontWeight: "600", lineHeight: "52px" }],
-				"title-sm": ["24px", { fontWeight: "600", lineHeight: "38px" }],
-				"text-xl": ["20px", { fontWeight: "600", lineHeight: "32px" }],
-				"text-lg": ["18px", { fontWeight: "500", lineHeight: "30px" }],
-				"text-md": ["16px", { fontWeight: "400", lineHeight: "24px" }],
-				"text-sm": ["14px", { fontWeight: "400", lineHeight: "20px" }],
-				"text-xs": ["12px", { fontWeight: "400", lineHeight: "16px" }],
+				"title-lg": ["3rem", { fontWeight: "600", lineHeight: 1.5 }],
+				"title-md": ["2.25rem", { fontWeight: "600", lineHeight: 1.4 }],
+				"title-sm": ["1.5rem", { fontWeight: "600", lineHeight: 1.6 }],
+				"text-xl": ["1.25rem", { fontWeight: "600", lineHeight: 1.6 }],
+				"text-lg": ["1.125rem", { fontWeight: "500", lineHeight: 1.6 }],
+				"text-md": ["1rem", { fontWeight: "400", lineHeight: 1.5 }],
+				"text-sm": ["0.875rem", { fontWeight: "400", lineHeight: 1.4 }],
+				"text-xs": ["0.75rem", { fontWeight: "400", lineHeight: 1.3 }],
 			},
 			borderRadius: {
 				lg: "var(--radius)",
