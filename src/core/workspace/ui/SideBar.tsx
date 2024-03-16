@@ -6,6 +6,7 @@ type SideBarProps = {
 
 function SideBar({ isOpen }: SideBarProps) {
 	const [distance, setDistance] = useState<number>(300);
+
 	useEffect(() => {
 		const observeResize = () => {
 			const target = document
@@ -13,6 +14,7 @@ function SideBar({ isOpen }: SideBarProps) {
 				?.getBoundingClientRect().left;
 			setDistance(target ?? 300);
 		};
+		observeResize();
 		window.addEventListener("resize", observeResize);
 		return () => window.removeEventListener("resize", observeResize);
 	}, []);
