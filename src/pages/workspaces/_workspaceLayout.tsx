@@ -1,6 +1,7 @@
 import { Outlet, createFileRoute, getRouteApi } from "@tanstack/react-router";
 import { useState } from "react";
 import SubHeader from "@/core/workspace/ui/SubHeader";
+import MemberDropDown from "@/core/workspace/ui/MemberDropDown";
 import SideBar from "@/core/workspace/ui/SideBar";
 
 export const Route = createFileRoute("/workspaces/_workspaceLayout")({
@@ -18,8 +19,7 @@ function WorkSpaceLayoutComponent() {
 		setIsOpen(!isOpen);
 	};
 	return (
-		<div className="relative bg-bg-secondary h-[100vh]">
-			<SideBar isOpen={!isOpen} />
+		<div className="bg-bg-secondary h-[100vh]">
 			<SubHeader
 				isOpen={isOpen}
 				onToggle={handleToggleSidebar}
@@ -27,7 +27,8 @@ function WorkSpaceLayoutComponent() {
 					name: "워크스페이스 이름",
 					id: workspaceId,
 				}}
-				memberDropDown={<div>대충 드롭다운 들어갈거임</div>}
+				memberDropDown={<MemberDropDown />}
+				sideBar={<SideBar isOpen={!isOpen} />}
 			/>
 			<main
 				className={`max-w-[1320px] m-auto ${isOpen ? "pl-[236px]" : "pl-0"}`}
