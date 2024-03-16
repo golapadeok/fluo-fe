@@ -18,7 +18,7 @@ function SubHeader({
 	memberDropDown,
 }: SubHeaderProps) {
 	return (
-		<section className="max-w-[1920px] h-[60px] shrink-0 border-b-[zinc-50] border-b border-solid">
+		<section className="max-w-[1920px] h-[60px] shrink-0 border-b-[zinc-50] border-b border-solid bg-bg-primary">
 			<div className="max-w-[1320px] h-[60px] m-auto flex justify-between items-center">
 				<div
 					className={`flex items-center gap-[25px] text-title-sm ${
