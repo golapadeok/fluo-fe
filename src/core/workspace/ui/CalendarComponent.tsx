@@ -1,5 +1,4 @@
 import {
-	type ReactNode,
 	type Dispatch,
 	type SetStateAction,
 	useState,
@@ -15,6 +14,7 @@ import {
 	addMonths,
 	isSameDay,
 } from "date-fns";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 interface TaskDataInfo {
 	asignee: string[];
@@ -44,6 +44,57 @@ interface SchedulCalendarDayCellProps {
 	isCurrentMonth: boolean;
 	columnIndex: number;
 }
+
+interface TaskHoverContextType {
+	hoveredTaskId: string | undefined;
+	setHoveredTaskId: Dispatch<SetStateAction<string | undefined>>;
+}
+
+const TodoItem = ({ dateInfo, taskId, taskInfo: { title } }: Task) => {
+	const { setHoveredTaskId } = useTaskHover();
+	return (
+		<div
+			className="flex items-center justify-between p-4 my-4 border bg-zinc-100 rounded-2xl w-60"
+			onMouseEnter={() => setHoveredTaskId(taskId)}
+			onMouseLeave={() => setHoveredTaskId(undefined)}
+		>
+			<div className="flex items-center justify-between p-4 text-xs font-semibold border-l-4 border-red-500 rounded-r-lg whitespace-nowrap">
+				{title}
+			</div>
+			<div className="flex flex-col items-center text-xs">
+				<span>{format(new Date(dateInfo.startDate), "yyyy/MM/dd")}</span>~
+				<span>{format(new Date(dateInfo.endDate), "yyyy/MM/dd")}</span>
+			</div>
+		</div>
+	);
+};
+
+const TodoList = ({ tasks }: { tasks: Task[] }) => {
+	return (
+		<div className="p-8 bg-white rounded-lg shadow h-full w-[296px]">
+			<header className="flex items-center">
+				<span className="h-8 text-xl">4월 3주차 업무 리스트</span>
+				<ChevronLeft />
+				<ChevronRight />
+			</header>
+			{tasks.map((task: Task) => {
+				return <TodoItem key={task.taskId} {...task} />;
+			})}
+		</div>
+	);
+};
+
+const TaskHoverContext = createContext<TaskHoverContextType | undefined>(
+	undefined,
+);
+
+export const useTaskHover = () => {
+	const context = useContext(TaskHoverContext);
+	if (context === undefined) {
+		throw new Error("TaskHoverContext 내에서만 사용해야 합니다.");
+	}
+	return context;
+};
 
 const SchedulCalendarDayCell: React.FC<SchedulCalendarDayCellProps> = ({
 	date,
@@ -145,23 +196,6 @@ const SchedulCalendarDayCell: React.FC<SchedulCalendarDayCellProps> = ({
 	);
 };
 
-interface TaskHoverContextType {
-	hoveredTaskId: string | undefined;
-	setHoveredTaskId: Dispatch<SetStateAction<string | undefined>>;
-}
-
-const TaskHoverContext = createContext<TaskHoverContextType | undefined>(
-	undefined,
-);
-
-export const useTaskHover = () => {
-	const context = useContext(TaskHoverContext);
-	if (context === undefined) {
-		throw new Error("TaskHoverContext 내에서만 사용해야 합니다.");
-	}
-	return context;
-};
-
 const SchedulCalendar: React.FC<{ tasks: Task[] }> = ({ tasks }) => {
 	const [currentDate, setCurrentDate] = useState(new Date());
 
@@ -250,116 +284,7 @@ const SchedulCalendar: React.FC<{ tasks: Task[] }> = ({ tasks }) => {
 	);
 };
 
-const MiniCalendarDayCell: React.FC<{
-	children: ReactNode;
-	isCurrentMonth: boolean;
-	isToday: boolean;
-}> = ({ children, isCurrentMonth, isToday }) => {
-	const cellClasses = `flex items-center justify-center rounded-full cursor-pointer size-6 hover:border-indigo-400 hover:border-2 hover:bg-indigo-50 text-xs ${
-		!isCurrentMonth && "text-gray-400"
-	} ${isToday && "bg-indigo-50 border-2 border-indigo-600"}`;
-
-	return <div className={cellClasses}>{children}</div>;
-};
-
-const MiniCalendar = () => {
-	const [currentDate, setCurrentDate] = useState(new Date());
-	const startDate = startOfWeek(startOfMonth(currentDate));
-	const today = new Date();
-
-	const prevMonth = () => {
-		setCurrentDate(addMonths(currentDate, -1));
-	};
-	const nextMonth = () => {
-		setCurrentDate(addMonths(currentDate, 1));
-	};
-
-	const days = Array.from({ length: 42 }, (_, i) => addDays(startDate, i));
-	const daysOfWeek = ["일", "월", "화", "수", "목", "금", "토"];
-
-	return (
-		<div className="flex flex-col bg-white rounded-lg shadow h-[300px] p-4">
-			<header className="flex items-center justify-between">
-				<span className="font-semibold">{format(currentDate, "yyyy.MM")}</span>
-				<div className="flex gap-2">
-					<button type="button" onClick={prevMonth} className="size-6">
-						&lt;
-					</button>
-					<button type="button" onClick={nextMonth} className="size-6">
-						&gt;
-					</button>
-				</div>
-			</header>
-			<div className="grid grid-cols-7 gap-2 mt-4">
-				{daysOfWeek.map((item) => (
-					<div
-						className="flex items-center justify-center text-xs size-6 text-zinc-400"
-						key={item}
-					>
-						{item}
-					</div>
-				))}
-				{days.map((day) => (
-					<MiniCalendarDayCell
-						key={day.toString()}
-						isCurrentMonth={isSameMonth(day, currentDate)}
-						isToday={isSameDay(day, today)}
-					>
-						{format(day, "d")}
-					</MiniCalendarDayCell>
-				))}
-			</div>
-		</div>
-	);
-};
-
-const Chip = () => <div className="bg-blue-400 rounded-full size-2" />;
-
-const TodoItem = ({
-	dateInfo,
-	taskId,
-	taskInfo: { title, description },
-}: Task) => {
-	const { setHoveredTaskId } = useTaskHover();
-	return (
-		<div
-			className="flex items-center my-4 w-60"
-			onMouseEnter={() => setHoveredTaskId(taskId)}
-			onMouseLeave={() => setHoveredTaskId(undefined)}
-		>
-			<div className="flex items-center h-16 pr-4 border-r-4 w-14">
-				{format(new Date(dateInfo.startDate), "MM/dd")}
-			</div>
-			<div className="flex flex-col w-40 ml-4">
-				<span className="text-sm font-semibold">{title}</span>
-				<span className="w-full text-xs break-words truncate text-zinc-400 hover:overflow-visible hover:break-normal hover:whitespace-normal hover:text-clip">
-					{description}
-				</span>
-				<div className="flex gap-1 mt-1">
-					<Chip />
-					<Chip />
-					<Chip />
-					<Chip />
-					<Chip />
-				</div>
-			</div>
-		</div>
-	);
-};
-
-const TodoList = ({ tasks }: { tasks: Task[] }) => {
-	return (
-		<div className="p-8 bg-white rounded-lg shadow h-[463px] w-[296px]">
-			<div className="h-8 text-xl">업무 리스트</div>
-			<hr className="my-4 w-60 border-zinc-400" />
-			{tasks.map((task: Task) => {
-				return <TodoItem key={task.taskId} {...task} />;
-			})}
-		</div>
-	);
-};
-
-const Calendar = () => {
+const CalendarComponent = () => {
 	const [hoveredTaskId, setHoveredTaskId] = useState<string | undefined>();
 	const mockTasks: Task[] = [
 		{
@@ -432,7 +357,6 @@ const Calendar = () => {
 			<div className="flex gap-4 p-5 w-[1320px] h-[823px] bg-zinc-100 rounded-xl">
 				<SchedulCalendar tasks={mockTasks} />
 				<div className="flex flex-col space-y-4 w-[300px]">
-					<MiniCalendar />
 					<TodoList tasks={mockTasks} />
 				</div>
 			</div>
@@ -440,4 +364,4 @@ const Calendar = () => {
 	);
 };
 
-export default Calendar;
+export default CalendarComponent;
