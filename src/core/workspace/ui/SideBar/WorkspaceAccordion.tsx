@@ -5,7 +5,7 @@ import {
 	AccordionTrigger,
 } from "@/lib/ui/accordion";
 import { ChevronDown, List } from "lucide-react";
-import { useState, type MouseEvent } from "react";
+import { useState } from "react";
 
 function WorkspaceAccordion() {
 	const [isOpen, setIsOpen] = useState<boolean>(true);
@@ -16,7 +16,7 @@ function WorkspaceAccordion() {
 			defaultValue="workspace-list"
 			collapsible
 			className="w-full"
-			onValueChange={(e: MouseEvent) => {
+			onValueChange={(e: string) => {
 				setIsOpen(!!e);
 			}}
 		>
