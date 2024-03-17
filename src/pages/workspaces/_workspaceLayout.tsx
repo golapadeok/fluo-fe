@@ -1,7 +1,7 @@
 import { Outlet, createFileRoute, getRouteApi } from "@tanstack/react-router";
 import { useState } from "react";
 import SubHeader from "@/core/workspace/ui/SubHeader";
-import SideBar from "@/core/workspace/ui/SideBar";
+import SideBar from "@/core/workspace/ui/SideBar/SideBar";
 
 export const Route = createFileRoute("/workspaces/_workspaceLayout")({
 	component: WorkSpaceLayoutComponent,
