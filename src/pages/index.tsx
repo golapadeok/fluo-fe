@@ -1,4 +1,4 @@
-import WorkTable from "@/core/workspace/ui/WorkTable";
+import WorkspaceList from "@/core/workspace/ui/WorkspaceList";
 import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/")({
@@ -9,7 +9,7 @@ function Home() {
 	return(
 		<>
 			<div>홈페이지입니다.</div>
-			<WorkTable />
+			<WorkspaceList />
 		</>
 	);
 }

@@ -5,13 +5,15 @@ const WorkTable = () => {
   return(
     <div className="flex flex-col w-screen">
       <TableTitle />
-      <WorkList />
-      <WorkList />
-      <WorkList />
-      <WorkList />
-      <WorkList />
-      <WorkList />
-      <WorkList />
+      <ul>
+        <WorkList />
+        <WorkList />
+        <WorkList />
+        <WorkList />
+        <WorkList />
+        <WorkList />
+        <WorkList />
+      </ul>
     </div>
   )
 };
