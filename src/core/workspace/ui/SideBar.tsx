@@ -1,3 +1,4 @@
+import WorkspaceAccordion from "@/core/workspace/ui/WorkspaceAccordion";
 import { useEffect, useState } from "react";
 
 type SideBarProps = {
@@ -25,7 +26,7 @@ function SideBar({ isOpen }: SideBarProps) {
 				isOpen ? "hidden" : "flex"
 			} transition-all ease-out fixed z-10 w-[203px] inset-y-0 rounded-[20px] py-[14px] px-[11px] bg-bg-primary shadow-4`}
 		>
-			사이드바
+			<WorkspaceAccordion />
 		</aside>
 	);
 }
