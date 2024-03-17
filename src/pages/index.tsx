@@ -5,5 +5,9 @@ export const Route = createFileRoute("/")({
 });
 
 function Home() {
-	return <div>홈페이지입니다.</div>;
+	return(
+		<>
+			<div>홈페이지입니다.</div>
+		</>
+	);
 }
