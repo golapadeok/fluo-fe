@@ -20,7 +20,7 @@ function WorkSpaceLayoutComponent() {
 	return (
 		<>
 			<SideBar isOpen={!isOpen} />
-			<div className="bg-bg-secondary h-[100vh]">
+			<div className="bg-bg-secondary min-h-[100vh]">
 				<SubHeader
 					isOpen={isOpen}
 					onClickChevronButton={handleToggleSidebar}
