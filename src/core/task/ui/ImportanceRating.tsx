@@ -1,6 +1,6 @@
 type Color = 'bg-blue-500' | 'bg-green-500' | 'bg-yellow-500' | 'bg-orange-500' | 'bg-red-500' | 'bg-gray-300';
 
-const Rating = ({rating}:{rating:number}) => {
+const ImportanceRating = ({rating}:{rating:number}) => {
 
   const getColorForRating = (value:number) => {
     switch (true) {
@@ -54,4 +54,4 @@ const RatingItem = ({
   );
 }
 
-export default Rating;
+export default ImportanceRating;
