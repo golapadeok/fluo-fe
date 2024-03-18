@@ -1,4 +1,4 @@
-import ImportanceRating from "@/core/task/ui/ImportanceRating";
+import PriorityRating from "@/core/task/ui/PriorityRating";
 import { Avatar, AvatarFallback } from "@/lib/ui/avatar";
 import { CalendarClockIcon } from "lucide-react";
 
@@ -9,7 +9,7 @@ const Task = () => {
         <div>
           <div className="py-0.5 px-2 rounded-[3px] bg-zinc-400 text-xs text-white">#Design</div>
         </div>
-        <ImportanceRating rating={4} />
+        <PriorityRating priority={4} />
       </div>
       <div className="text-xs font-semibold">업무 제목</div>
       <div className="flex justify-between">

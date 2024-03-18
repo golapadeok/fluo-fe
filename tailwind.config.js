@@ -70,6 +70,7 @@ module.exports = {
 					yellow: "#FFCC00",
 					green: "#34C759",
 					blue: "#007AFF",
+					orange: "#FF9500",
 				},
 			},
 			/** 스타일 가이드의 effect 부분(1,2,3,4)

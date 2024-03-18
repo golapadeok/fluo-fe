@@ -1,4 +1,4 @@
-import ImportanceRating from "@/core/task/ui/ImportanceRating";
+import PriorityRating from "@/core/task/ui/PriorityRating";
 import { Avatar } from "@/lib/ui/avatar";
 
 const TaskTable = () => {
@@ -34,7 +34,7 @@ const TaskTableItem = () => {
       <div className="flex justify-center items-center">업무에 대한 한줄 설명</div>
       <div className="flex justify-center items-center">2024.04.08</div>
       <div className="flex justify-center items-center">시작 전</div>
-      <div className="flex justify-center items-center"><ImportanceRating rating={4}/></div>
+      <div className="flex justify-center items-center"><PriorityRating priority={4}/></div>
       <div className="flex justify-center items-center"><Avatar size="xs"/></div>
       <div className="flex justify-center items-center">
         <div className="w-[60px] h-5 py-0.5 px-3 rounded-sm bg-indigo-300 text-white text-xs">Design</div>
