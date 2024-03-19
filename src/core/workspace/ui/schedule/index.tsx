@@ -5,8 +5,8 @@ import {
 	createContext,
 	useContext,
 } from "react";
-import SchedulCalendar from "@/core/workspace/ui/schedule/components/SchedulCalendar";
-import TodoList from "@/core/workspace/ui/schedule/components/TodoList";
+import SchedulCalendar from "@/core/workspace/ui/schedule/SchedulCalendar";
+import TodoList from "@/core/workspace/ui/schedule/TodoList";
 
 interface TaskHoverContextType {
 	hoveredTaskId: string | undefined;
