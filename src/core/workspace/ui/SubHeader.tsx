@@ -28,7 +28,7 @@ function SubHeader({
 					{workspaceData.name}
 				</div>
 				<div className="flex items-center gap-[21px]">
-					{<MemberDropDown />}
+					<MemberDropDown />
 					<Link
 						to="/workspaces/$workspaceId/admin"
 						params={{ workspaceId: workspaceData.id }}
