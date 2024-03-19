@@ -1,4 +1,4 @@
-import TaskTable from "@/core/task/ui/TaskTable";
+import PrioritySelect from "@/core/task/ui/PrioritySelect";
 import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/")({
@@ -9,7 +9,7 @@ function Home() {
 	return(
 		<>
 			<div>홈페이지입니다.</div>
-			<TaskTable />
+			<PrioritySelect />
 		</>
 	);
 }
