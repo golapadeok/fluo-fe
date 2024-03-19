@@ -39,25 +39,33 @@ interface SchedulCalendarDayCellProps {
 }
 
 function assignTasksCorrectly(tasks: Task[]): {
-	schedule: Schedule;
-	waitingList: WaitingTask[];
+	schedule: Schedule; // 최종 작업 일정
+	waitingList: WaitingTask[]; // 할당되지 않은 작업들의 목록
 } {
+	// 일정 및 대기 목록 초기화
 	const schedule: Schedule = {};
 	const waitingList: WaitingTask[] = [];
+	// 동시에 진행할 수 있는 작업 수를 2로 제한
 	const activeTasks: [Task | null, Task | null] = [null, null];
 
+	// 작업의 시작 및 종료 날짜를 추출
 	const startDates = tasks.map((task) => task.dateInfo.startDate);
 	const endDates = tasks.map((task) => task.dateInfo.endDate);
+	// 전체 작업 기간을 계산하기 위해 최소 시작 날짜 및 최대 종료 날짜를 찾음
 	const startDate = new Date(
 		Math.min(...startDates.map((date) => date.getTime())),
 	);
 	const endDate = new Date(Math.max(...endDates.map((date) => date.getTime())));
+	// 현재 날짜를 최소 시작 날짜로 초기화
 	let currentDate = new Date(startDate);
 
+	// 현재 날짜가 종료 날짜 이전이거나 같은 동안 반복
 	while (isBefore(currentDate, endDate) || isEqual(currentDate, endDate)) {
+		// 현재 날짜를 문자열로 변환하여 일정에 추가
 		const dateString = format(currentDate, "yyyy-MM-dd");
 		schedule[dateString] = [null, null];
 
+		// 이미 활성화된 작업이 있으면 일정에 추가
 		activeTasks.forEach((task, index) => {
 			if (
 				task &&
@@ -66,10 +74,11 @@ function assignTasksCorrectly(tasks: Task[]): {
 			) {
 				schedule[dateString][index] = task;
 			} else {
+				// 활성 작업이 종료되면 null로 설정
 				activeTasks[index] = null;
 			}
 		});
-
+		// 모든 작업을 순회하며 현재 날짜에 할당할 작업 찾기
 		for (const task of tasks) {
 			if (
 				(isBefore(task.dateInfo.startDate, currentDate) ||
@@ -77,13 +86,16 @@ function assignTasksCorrectly(tasks: Task[]): {
 				(isBefore(currentDate, task.dateInfo.endDate) ||
 					isEqual(currentDate, task.dateInfo.endDate))
 			) {
+				// 현재 작업이 아직 활성화되지 않았는지 확인
 				const taskNotActive = !activeTasks.includes(task);
 				const index = schedule[dateString].indexOf(null);
 				if (taskNotActive && index !== -1) {
+					// 작업을 일정에 할당
 					schedule[dateString][index] = task;
 					activeTasks[index] = task;
 					if (!task.actualStartDate) task.actualStartDate = currentDate;
 				} else if (taskNotActive) {
+					// 작업을 대기 목록에 추가
 					const waitingTaskIndex = waitingList.findIndex(
 						(wt) => wt.task.taskId === task.taskId,
 					);
@@ -131,8 +143,7 @@ const SchedulCalendarDayCell: React.FC<SchedulCalendarDayCellProps> = ({
 		  ? (isFirstColumn ? "rounded-bl-lg" : "") +
 			  (isLastColumn ? " rounded-br-lg" : "")
 		  : "";
-	const overflowHiddenClass = isFirstColumn || isLastColumn ? "" : "";
-	const cellClasses = `${cellBaseClasses} ${cellColorClass} ${cornerClasses} ${overflowHiddenClass}`;
+	const cellClasses = `${cellBaseClasses} ${cellColorClass} ${cornerClasses}`;
 
 	const dateString = format(date, "yyyy-MM-dd");
 
@@ -192,8 +203,8 @@ const SchedulCalendarDayCell: React.FC<SchedulCalendarDayCellProps> = ({
 								return `${roundedDefault} ${marginDefault}`;
 							}
 							return `${roundedLeft} ${marginLeft} ${widthHover}`;
-							//마감일 라벨
 						}
+						//마감일 라벨
 						if (isEndLabel) {
 							if (isFirstColumn) {
 								return `${roundedDefault} ${marginDefault}`;
