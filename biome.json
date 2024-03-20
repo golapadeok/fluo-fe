@@ -19,9 +19,8 @@
 			"suspicious": {
 				"noConsoleLog": "warn"
 			},
-			"nursery": {
-				"noUnusedImports": "error",
-				"useImportType": "error"
+			"correctness": {
+				"noUnusedImports": "error"
 			}
 		}
 	}
