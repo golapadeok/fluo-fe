@@ -1,3 +1,4 @@
+import InvitationListContent from "@/core/workspace/ui/Contents/InvitationListContent";
 import WorkSpaceListContent from "@/core/workspace/ui/Contents/WorkSpaceListContent";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/lib/ui/tabs";
 import { createFileRoute } from "@tanstack/react-router";
@@ -33,7 +34,7 @@ function WorkSpacesIndexPageComponent() {
 					<WorkSpaceListContent />
 				</TabsContent>
 				<TabsContent value="credential" className="mt-0 pt-[36px]">
-					권한 설정
+					<InvitationListContent />
 				</TabsContent>
 			</Tabs>
 		</main>
