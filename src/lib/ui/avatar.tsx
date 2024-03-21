@@ -4,7 +4,7 @@ import * as AvatarPrimitive from "@radix-ui/react-avatar";
 import { cn } from "@/lib/utils";
 import { type VariantProps, cva } from "class-variance-authority";
 
-const avatarVariants = cva("relative flex h-10 w-10 border border-black shrink-0 overflow-hidden rounded-full", {
+const avatarVariants = cva("relative flex h-10 w-10 bg-white border border-black shrink-0 overflow-hidden rounded-full", {
   variants: {
     size: {
       xs: "w-5 h-5",

@@ -1,6 +1,5 @@
 import PriorityRating from "@/core/task/ui/PriorityRating";
-import { Avatar, AvatarFallback } from "@/lib/ui/avatar";
-import { User } from "lucide-react";
+import AvatarGroup from "@/lib/ui/AvatarGroup";
 
 const TaskTable = () => {
   return (
@@ -42,11 +41,7 @@ const TaskTableItem = () => {
         <PriorityRating priority={4} />
       </div>
       <div className="flex justify-center items-center">
-        <Avatar size="xs">
-          <AvatarFallback>
-            <User />
-          </AvatarFallback>
-        </Avatar>
+        <AvatarGroup />
       </div>
       <div className="flex justify-center items-center">
         <div className="py-0.5 px-2 rounded-[3px] bg-zinc-400 text-xs text-white">#Design</div>
