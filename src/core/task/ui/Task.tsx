@@ -1,9 +1,9 @@
 import PriorityRating from "@/core/task/ui/PriorityRating";
 import { Avatar, AvatarFallback } from "@/lib/ui/avatar";
-import { CalendarClockIcon } from "lucide-react";
+import { CalendarClockIcon, User } from "lucide-react";
 
 const Task = () => {
-  return(
+  return (
     <div className="flex flex-col justify-between px-4 py-[18px] rounded bg-[#E7E7E7] w-[296px] h-32">
       <div className="flex justify-between">
         <div>
@@ -13,14 +13,20 @@ const Task = () => {
       </div>
       <div className="text-xs font-semibold">업무 제목</div>
       <div className="flex justify-between">
-        <div><Avatar size="sm"><AvatarFallback>T</AvatarFallback></Avatar></div>
+        <div>
+          <Avatar size="sm">
+            <AvatarFallback>
+              <User />
+            </AvatarFallback>
+          </Avatar>
+        </div>
         <div className="flex justify-center items-center gap-1">
-          <CalendarClockIcon className="w-4 h-4"/>
-          <p className=" text-[10px] text-zinc-500">2024.04.08</p>
+          <CalendarClockIcon className="w-4 h-4" />
+          <p className=" text-[10px] text-zinc-500">D-7</p>
         </div>
       </div>
     </div>
-  )
+  );
 };
 
 export default Task;
