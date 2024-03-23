@@ -3,7 +3,7 @@ import AvatarGroup from "@/lib/ui/AvatarGroup";
 
 const TaskTable = () => {
   return (
-    <div className="flex flex-col w-screen">
+    <div className="flex flex-col min-w-fit">
       <TaskTableTitle />
       <ul>
         <TaskTableItem />

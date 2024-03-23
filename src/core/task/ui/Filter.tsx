@@ -10,7 +10,7 @@ const Filter = () => {
   return (
     <Accordion type="single" collapsible>
       <AccordionItem value="filter">
-        <div className="flex gap-2">
+        <div className="flex gap-2 w-full">
           <div className="relative grow">
             <SearchIcon className="absolute top-[14px] left-6" />
             <Input className="bg-white indent-10 w-full border-zinc-400" placeholder="검색하기" />
