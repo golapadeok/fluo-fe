@@ -1,8 +1,12 @@
+import { type Task, useTaskHover } from "@/core/workspace/ui/schedule";
 import { format } from "date-fns";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { useTaskHover, type Task } from "@/core/workspace/ui/schedule";
 
-const TodoItem = ({ dateInfo, taskId, taskInfo: { title } }: Task) => {
+export interface TaskWithColor extends Task {
+	color : string;
+}
+
+const TodoItem = ({ dateInfo, taskId, taskInfo: { title }, color }: TaskWithColor) => {
 	const { setHoveredTaskId } = useTaskHover();
 	return (
 		<div
@@ -11,7 +15,7 @@ const TodoItem = ({ dateInfo, taskId, taskInfo: { title } }: Task) => {
 			onMouseLeave={() => setHoveredTaskId(undefined)}
 		>
 			<div className="flex items-center">
-				<div className="w-1 h-8 mx-2 bg-red-500" />
+				<div className={`w-1 h-8 mx-2 bg-${color}-500`} />
 				<span className="text-xs font-semibold whitespace-nowrap">{title}</span>
 			</div>
 			<div className="flex flex-col items-center text-[10px]">
@@ -22,7 +26,7 @@ const TodoItem = ({ dateInfo, taskId, taskInfo: { title } }: Task) => {
 	);
 };
 
-const TodoList = ({ tasks }: { tasks: Task[] }) => {
+const TodoList = ({ tasks }: { tasks: TaskWithColor[] }) => {
 	return (
 		<div className="p-8 bg-white rounded-lg shadow h-full w-[296px]">
 			<header className="flex items-center">
@@ -30,7 +34,7 @@ const TodoList = ({ tasks }: { tasks: Task[] }) => {
 				<ChevronLeft />
 				<ChevronRight />
 			</header>
-			{tasks.map((task: Task) => {
+			{tasks.map((task: TaskWithColor) => {
 				return <TodoItem key={task.taskId} {...task} />;
 			})}
 		</div>

@@ -1,16 +1,17 @@
+import SchedulCalendar from "@/core/workspace/ui/schedule/SchedulCalendar";
+import TodoList from "@/core/workspace/ui/schedule/TodoList";
 import {
 	type Dispatch,
 	type SetStateAction,
-	useState,
 	createContext,
 	useContext,
+	useState,
 } from "react";
-import SchedulCalendar from "@/core/workspace/ui/schedule/SchedulCalendar";
-import TodoList from "@/core/workspace/ui/schedule/TodoList";
 
 interface TaskHoverContextType {
 	hoveredTaskId: string | undefined;
 	setHoveredTaskId: Dispatch<SetStateAction<string | undefined>>;
+	taskLabelColor:string[];
 }
 
 interface TaskDataInfo {
@@ -46,6 +47,7 @@ export const useTaskHover = () => {
 
 const Schedule = () => {
 	const [hoveredTaskId, setHoveredTaskId] = useState<string | undefined>();
+	const taskLabelColor = ['red','orange','yellow','green','blue']
 	const mockTasks: Task[] = [
 		{
 			taskId: "1",
@@ -128,12 +130,20 @@ const Schedule = () => {
 		},
 	];
 
+	const tasksWithColor = mockTasks.map((task, index) => {
+  const color = taskLabelColor[index % taskLabelColor.length];
+  return {
+    ...task,
+    color,
+  };
+});
+
 	return (
-		<TaskHoverContext.Provider value={{ hoveredTaskId, setHoveredTaskId }}>
+		<TaskHoverContext.Provider value={{ hoveredTaskId, setHoveredTaskId, taskLabelColor }}>
 			<div className="flex gap-4 p-5 w-[1320px] h-[823px] bg-zinc-100 rounded-xl">
-				<SchedulCalendar tasks={mockTasks} />
+				<SchedulCalendar tasks={tasksWithColor} />
 				<div className="flex flex-col space-y-4 w-[300px]">
-					<TodoList tasks={mockTasks} />
+					<TodoList tasks={tasksWithColor} />
 				</div>
 			</div>
 		</TaskHoverContext.Provider>

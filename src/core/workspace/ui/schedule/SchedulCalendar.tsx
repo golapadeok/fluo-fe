@@ -1,5 +1,13 @@
-import { useState } from "react";
-import { PlusIcon } from "lucide-react";
+import { useTaskHover } from "@/core/workspace/ui/schedule";
+import type { TaskWithColor } from "@/core/workspace/ui/schedule/TodoList";
+import {
+	DropdownMenu,
+	DropdownMenuContent,
+	DropdownMenuItem,
+	DropdownMenuLabel,
+	DropdownMenuSeparator,
+	DropdownMenuTrigger,
+} from "@/lib/ui/dropdown-menu";
 import {
 	addDays,
 	addMonths,
@@ -11,34 +19,27 @@ import {
 	startOfMonth,
 	startOfWeek,
 } from "date-fns";
-import { useTaskHover, type Task } from "@/core/workspace/ui/schedule";
-import {
-	DropdownMenu,
-	DropdownMenuContent,
-	DropdownMenuItem,
-	DropdownMenuLabel,
-	DropdownMenuSeparator,
-	DropdownMenuTrigger,
-} from "@/lib/ui/dropdown-menu";
+import { PlusIcon } from "lucide-react";
+import { useState } from "react";
 
 interface Schedule {
-	[date: string]: [Task | null, Task | null];
+	[date: string]: [TaskWithColor | null, TaskWithColor | null];
 }
 
 interface WaitingTask {
-	task: Task;
+	task: TaskWithColor;
 	unassignedDates: string[];
 }
 
 interface SchedulCalendarDayCellProps {
 	date: Date;
-	tasks: (Task | null)[];
+	tasks: (TaskWithColor | null)[];
 	showMore?: WaitingTask[];
 	isCurrentMonth: boolean;
 	columnIndex: number;
 }
 
-function assignTasksCorrectly(tasks: Task[]): {
+function assignTasksCorrectly(tasks: TaskWithColor[]): {
 	schedule: Schedule; // 최종 작업 일정
 	waitingList: WaitingTask[]; // 할당되지 않은 작업들의 목록
 } {
@@ -46,7 +47,7 @@ function assignTasksCorrectly(tasks: Task[]): {
 	const schedule: Schedule = {};
 	const waitingList: WaitingTask[] = [];
 	// 동시에 진행할 수 있는 작업 수를 2로 제한
-	const activeTasks: [Task | null, Task | null] = [null, null];
+	const activeTasks: [TaskWithColor | null, TaskWithColor | null] = [null, null];
 
 	// 작업의 시작 및 종료 날짜를 추출
 	const startDates = tasks.map((task) => task.dateInfo.startDate);
@@ -152,6 +153,8 @@ const SchedulCalendarDayCell: React.FC<SchedulCalendarDayCellProps> = ({
 		waitingTask.unassignedDates.includes(dateString),
 	);
 
+
+
 	return (
 		<div className={cellClasses}>
 			<header className="pl-2 font-bold">{format(date, "d")}</header>
@@ -171,7 +174,14 @@ const SchedulCalendarDayCell: React.FC<SchedulCalendarDayCellProps> = ({
 
 					const labelBaseClasses =
 						"relative h-5 p-2 flex items-center text-xs whitespace-nowrap gap-0.5 py-0.5";
-					const labelColorClasses = isHovered ? "bg-main-100" : "bg-zinc-100";
+						
+					const labelColorsVariant: Record<string,{ background: string; stick: string }> = {
+						red: { background: 'bg-red-100', stick: 'bg-red-300' },
+						orange: { background: 'bg-orange-100', stick: 'bg-orange-300' },
+						yellow: { background: 'bg-yellow-100', stick: 'bg-yellow-300' },
+						green: { background: 'bg-green-100', stick: 'bg-green-300' },
+						blue: { background: 'bg-blue-100', stick: 'bg-blue-300' },
+					};
 
 					const getLabelClasses = (props: Record<string, boolean>) => {
 						const {
@@ -237,17 +247,17 @@ const SchedulCalendarDayCell: React.FC<SchedulCalendarDayCellProps> = ({
 							key={task.taskId}
 							onMouseEnter={() => setHoveredTaskId(task.taskId)}
 							onMouseLeave={() => setHoveredTaskId(undefined)}
-							className={`${labelBaseClasses} ${labelColorClasses} ${labelOptionalClasses}`}
+							className={`${labelBaseClasses} ${labelOptionalClasses} ${labelColorsVariant[task.color].background }`}
 						>
 							{(isHovered ? isStartLabel : true) && (
 								<div
-									className={`flex items-center gap-0.5 h-5 ${
+									className={`flex flex-1 items-center gap-0.5 h-5 ${
 										isHovered ? "" : "w-full"
 									}`}
 								>
 									<div
 										className={`w-0.5 h-1 py-1.5 mr-0.5 ml-1 ${
-											isHovered ? "bg-main-300" : "bg-zinc-300"
+										labelColorsVariant[task.color].stick
 										}`}
 									/>
 									<span className="truncate text-[10px]">
@@ -262,7 +272,7 @@ const SchedulCalendarDayCell: React.FC<SchedulCalendarDayCellProps> = ({
 			{isOverflow && (
 				<DropdownMenu>
 					<DropdownMenuTrigger asChild>
-						<div className="h-5 p-2 mt-1 flex items-center text-xs whitespace-nowrap gap-0.5 py-0.5 bg-zinc-100 rounded-md w-28 mx-1.5 cursor-pointer">
+						<div className="h-5 p-2 mt-1 flex items-center text-xs whitespace-nowrap gap-0.5 py-0.5 bg-white-100 rounded-md w-28 mx-1.5 cursor-pointer border-zinc-200 border">
 							<PlusIcon width={12} className="text-zinc-400" />
 							<span>더보기</span>
 						</div>
@@ -284,7 +294,7 @@ const SchedulCalendarDayCell: React.FC<SchedulCalendarDayCellProps> = ({
 	);
 };
 
-const SchedulCalendar: React.FC<{ tasks: Task[] }> = ({ tasks }) => {
+const SchedulCalendar: React.FC<{ tasks: TaskWithColor[] }> = ({ tasks }) => {
 	const [currentDate, setCurrentDate] = useState(new Date());
 
 	const startDate = startOfWeek(startOfMonth(currentDate));
