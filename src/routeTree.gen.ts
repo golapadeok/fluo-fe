@@ -17,7 +17,6 @@ import { Route as AuthRouteImport } from "./pages/auth/route"
 import { Route as IndexImport } from "./pages/index"
 import { Route as WorkspacesIndexImport } from "./pages/workspaces/index"
 import { Route as WorkspacesWorkspaceLayoutImport } from "./pages/workspaces/_workspaceLayout"
-import { Route as WorkspacesWorkspaceIdAdminImport } from "./pages/workspaces/$workspaceId/admin"
 import { Route as WorkspacesWorkspaceLayoutWorkspaceIdIndexImport } from "./pages/workspaces/_workspaceLayout.$workspaceId.index"
 import { Route as WorkspacesWorkspaceLayoutWorkspaceIdAdminImport } from "./pages/workspaces/_workspaceLayout.$workspaceId.admin"
 
@@ -51,13 +50,6 @@ const WorkspacesWorkspaceLayoutRoute = WorkspacesWorkspaceLayoutImport.update({
   id: "/_workspaceLayout",
   getParentRoute: () => WorkspacesRoute,
 } as any)
-
-const WorkspacesWorkspaceIdAdminRoute = WorkspacesWorkspaceIdAdminImport.update(
-  {
-    path: "/$workspaceId/admin",
-    getParentRoute: () => WorkspacesRoute,
-  } as any,
-)
 
 const WorkspacesWorkspaceLayoutWorkspaceIdIndexRoute =
   WorkspacesWorkspaceLayoutWorkspaceIdIndexImport.update({
@@ -95,10 +87,6 @@ declare module "@tanstack/react-router" {
       preLoaderRoute: typeof WorkspacesIndexImport
       parentRoute: typeof WorkspacesImport
     }
-    "/workspaces/$workspaceId/admin": {
-      preLoaderRoute: typeof WorkspacesWorkspaceIdAdminImport
-      parentRoute: typeof WorkspacesImport
-    }
     "/workspaces/_workspaceLayout/$workspaceId/admin": {
       preLoaderRoute: typeof WorkspacesWorkspaceLayoutWorkspaceIdAdminImport
       parentRoute: typeof WorkspacesWorkspaceLayoutImport
@@ -121,7 +109,6 @@ export const routeTree = rootRoute.addChildren([
       WorkspacesWorkspaceLayoutWorkspaceIdIndexRoute,
     ]),
     WorkspacesIndexRoute,
-    WorkspacesWorkspaceIdAdminRoute,
   ]),
 ])
 
