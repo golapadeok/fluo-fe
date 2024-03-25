@@ -11,8 +11,17 @@ function MemberList() {
 				<h5 className="text-text-xl">워크스페이스 멤버 목록</h5>
 				<div className="text-text-sm text-zinc-400">6 members</div>
 			</header>
-			<div className="mt-[24px] w-full max-h-[384px] overflow-y-scroll">
-				<ul>
+			<div className="mt-[24px] w-full">
+				<ul className="divide-y-[1px] divide-zinc-200 max-h-[652px] overflow-y-scroll border-y-[1px] border-zinc-200">
+					<MemberItem rightAddon={<MemberRemoveButton />} />
+					<MemberItem rightAddon={<MemberRemoveButton />} />
+					<MemberItem rightAddon={<MemberRemoveButton />} />
+					<MemberItem rightAddon={<MemberRemoveButton />} />
+					<MemberItem rightAddon={<MemberRemoveButton />} />
+					<MemberItem rightAddon={<MemberRemoveButton />} />
+					<MemberItem rightAddon={<MemberRemoveButton />} />
+					<MemberItem rightAddon={<MemberRemoveButton />} />
+					<MemberItem rightAddon={<MemberRemoveButton />} />
 					<MemberItem rightAddon={<MemberRemoveButton />} />
 					<MemberItem rightAddon={<MemberRemoveButton />} />
 					<MemberItem rightAddon={<MemberRemoveButton />} />
@@ -28,7 +37,7 @@ interface ItemProps {
 }
 function MemberItem({ rightAddon }: ItemProps) {
 	return (
-		<li className="w-full flex items-center justify-between py-[12px] px-[20px] gap-[20px] last-of-type:border-b-[1px] border-zinc-200 border-t-[1px]">
+		<li className="w-full flex items-center justify-between py-[12px] px-[20px] gap-[20px] border-zinc-200">
 			<div className="flex gap-[16px] items-center w-full">
 				<Avatar className="h-[40px] w-[40px] flex-shrink-0" />
 				<div className="text-text-lg text-ellipsis overflow-hidden w-[72px] whitespace-nowrap break-all">

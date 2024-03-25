@@ -54,7 +54,7 @@ function MemberRoleSelect() {
 			</PopoverTrigger>
 			<PopoverContent className="w-[200px] p-0 bg-bg-primary">
 				<Command>
-					<CommandInput placeholder="역할을 찾아보세요..." />
+					<CommandInput placeholder="역할을 선택해주세요..." />
 					<CommandEmpty>해당 역할이 없습니다.</CommandEmpty>
 					<CommandList>
 						<CommandGroup>
