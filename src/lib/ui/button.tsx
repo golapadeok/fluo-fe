@@ -16,7 +16,7 @@ const buttonVariants = cva(
 				outline:
 					"bg-white shadow-[0_0_0_1px_var(--main-600)] text-main-600 border focus-visible:bg-bg-secondary hover:bg-bg-secondary",
 				ghost:
-					"bg-transparent text-zinc-400 hover:bg-zinc-200 hover:text-black",
+					"bg-transparent text-zinc-400 hover:bg-zinc-200 hover:text-black focus-visible:bg-zinc-200",
 			},
 			text: {
 				default: "text-sm font-semibold",

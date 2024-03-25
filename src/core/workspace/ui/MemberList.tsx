@@ -11,7 +11,7 @@ function MemberList() {
 				<h5 className="text-text-xl">워크스페이스 멤버 목록</h5>
 				<div className="text-text-sm text-zinc-400">6 members</div>
 			</header>
-			<div className="mt-[24px] w-full">
+			<div className="mt-[24px] w-full max-h-[384px] overflow-y-scroll">
 				<ul>
 					<MemberItem rightAddon={<MemberRemoveButton />} />
 					<MemberItem rightAddon={<MemberRemoveButton />} />
