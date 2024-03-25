@@ -19,7 +19,7 @@ import {
 	startOfMonth,
 	startOfWeek,
 } from "date-fns";
-import { PlusIcon } from "lucide-react";
+import { ChevronLeft, ChevronRight, PlusIcon } from "lucide-react";
 import { useState } from "react";
 
 interface Schedule {
@@ -47,7 +47,10 @@ function assignTasksCorrectly(tasks: TaskWithColor[]): {
 	const schedule: Schedule = {};
 	const waitingList: WaitingTask[] = [];
 	// 동시에 진행할 수 있는 작업 수를 2로 제한
-	const activeTasks: [TaskWithColor | null, TaskWithColor | null] = [null, null];
+	const activeTasks: [TaskWithColor | null, TaskWithColor | null] = [
+		null,
+		null,
+	];
 
 	// 작업의 시작 및 종료 날짜를 추출
 	const startDates = tasks.map((task) => task.dateInfo.startDate);
@@ -153,8 +156,6 @@ const SchedulCalendarDayCell: React.FC<SchedulCalendarDayCellProps> = ({
 		waitingTask.unassignedDates.includes(dateString),
 	);
 
-
-
 	return (
 		<div className={cellClasses}>
 			<header className="pl-2 font-bold">{format(date, "d")}</header>
@@ -174,13 +175,16 @@ const SchedulCalendarDayCell: React.FC<SchedulCalendarDayCellProps> = ({
 
 					const labelBaseClasses =
 						"relative h-5 p-2 flex items-center text-xs whitespace-nowrap gap-0.5 py-0.5";
-						
-					const labelColorsVariant: Record<string,{ background: string; stick: string }> = {
-						red: { background: 'bg-red-100', stick: 'bg-red-300' },
-						orange: { background: 'bg-orange-100', stick: 'bg-orange-300' },
-						yellow: { background: 'bg-yellow-100', stick: 'bg-yellow-300' },
-						green: { background: 'bg-green-100', stick: 'bg-green-300' },
-						blue: { background: 'bg-blue-100', stick: 'bg-blue-300' },
+
+					const labelColorsVariant: Record<
+						string,
+						{ background: string; stick: string }
+					> = {
+						red: { background: "bg-red-100", stick: "bg-red-300" },
+						orange: { background: "bg-orange-100", stick: "bg-orange-300" },
+						yellow: { background: "bg-yellow-100", stick: "bg-yellow-300" },
+						green: { background: "bg-green-100", stick: "bg-green-300" },
+						blue: { background: "bg-blue-100", stick: "bg-blue-300" },
 					};
 
 					const getLabelClasses = (props: Record<string, boolean>) => {
@@ -247,7 +251,9 @@ const SchedulCalendarDayCell: React.FC<SchedulCalendarDayCellProps> = ({
 							key={task.taskId}
 							onMouseEnter={() => setHoveredTaskId(task.taskId)}
 							onMouseLeave={() => setHoveredTaskId(undefined)}
-							className={`${labelBaseClasses} ${labelOptionalClasses} ${labelColorsVariant[task.color].background }`}
+							className={`${labelBaseClasses} ${labelOptionalClasses} ${
+								labelColorsVariant[task.color].background
+							}`}
 						>
 							{(isHovered ? isStartLabel : true) && (
 								<div
@@ -257,7 +263,7 @@ const SchedulCalendarDayCell: React.FC<SchedulCalendarDayCellProps> = ({
 								>
 									<div
 										className={`w-0.5 h-1 py-1.5 mr-0.5 ml-1 ${
-										labelColorsVariant[task.color].stick
+											labelColorsVariant[task.color].stick
 										}`}
 									/>
 									<span className="truncate text-[10px]">
@@ -309,15 +315,15 @@ const SchedulCalendar: React.FC<{ tasks: TaskWithColor[] }> = ({ tasks }) => {
 	};
 
 	return (
-		<div className="w-full py-8 bg-white rounded-lg">
-			<div className="flex flex-col items-center justify-center">
-				<header className="flex items-center justify-center w-full gap-8 p-4">
+		<div className="py-[38px] bg-white rounded-lg  w-[965px] h-[783px]">
+			<div className="flex flex-col items-center">
+				<header className="flex items-center justify-center w-full gap-x-12 h-[34px] mb-[38px]">
 					<button
 						type="button"
 						onClick={prevMonth}
-						className="bg-blue-100 size-8"
+						className="w-8 h-[34px] border rounded-md flex justify-center items-center text-zinc-400"
 					>
-						&lt;
+						<ChevronLeft />
 					</button>
 					<span className="text-[32px] font-semibold">
 						{format(currentDate, "yyyy.MM")}
@@ -325,12 +331,12 @@ const SchedulCalendar: React.FC<{ tasks: TaskWithColor[] }> = ({ tasks }) => {
 					<button
 						type="button"
 						onClick={nextMonth}
-						className="bg-blue-100 size-8"
+						className="w-8 h-[34px] border rounded-md flex justify-center items-center text-zinc-400"
 					>
-						&gt;
+						<ChevronRight />
 					</button>
 				</header>
-				<div className="grid grid-cols-7 grid-rows-6 m-2">
+				<div className="grid grid-cols-7 grid-rows-6">
 					{days.map((date, index) => {
 						const dateString = format(date, "yyy-MM-dd");
 						const result = assignTasksCorrectly(tasks);

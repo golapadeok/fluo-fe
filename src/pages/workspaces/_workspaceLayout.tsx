@@ -1,7 +1,7 @@
-import { Outlet, createFileRoute, getRouteApi } from "@tanstack/react-router";
-import { useState } from "react";
-import SubHeader from "@/core/workspace/ui/SubHeader";
 import SideBar from "@/core/workspace/ui/SideBar/SideBar";
+import SubHeader from "@/core/workspace/ui/SubHeader";
+import { Outlet, createFileRoute, getRouteApi } from "@tanstack/react-router";
+import { createContext, useContext, useState } from "react";
 
 export const Route = createFileRoute(
 	"/workspaces/_workspaceLayout",
@@ -10,6 +10,8 @@ export const Route = createFileRoute(
 });
 
 const routeApi = getRouteApi("/workspaces/_workspaceLayout/$workspaceId/");
+
+const OpenContext = createContext<{isOpen : boolean} | null>(null);
 
 function WorkSpaceLayoutComponent() {
 	const routeParams = routeApi.useParams();
@@ -20,7 +22,7 @@ function WorkSpaceLayoutComponent() {
 		setIsOpen(!isOpen);
 	};
 	return (
-		<>
+		<OpenContext.Provider value={{isOpen}}>
 			<SideBar isOpen={!isOpen} />
 			<div className="bg-bg-secondary min-h-[100vh]">
 				<SubHeader
@@ -39,8 +41,16 @@ function WorkSpaceLayoutComponent() {
 					<Outlet />
 				</main>
 			</div>
-		</>
+		</OpenContext.Provider>
 	);
 }
 
 export default WorkSpaceLayoutComponent;
+
+export function useOpen() {
+  const context = useContext(OpenContext)
+  if (!context) {
+    throw new Error('useOpen must be used within an AuthProvider')
+  }
+  return context
+}

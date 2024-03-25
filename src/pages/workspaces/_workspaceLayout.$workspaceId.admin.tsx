@@ -1,6 +1,7 @@
 import WorkspaceAdminContent from "@/core/workspace/ui/AdminContent";
 import MemberSettingContent from "@/core/workspace/ui/MemberSettingContent";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/lib/ui/tabs";
+import { useOpen } from "@/pages/workspaces/_workspaceLayout";
 import { createFileRoute } from "@tanstack/react-router";
 import { FileLock2Icon, UserRoundCogIcon } from "lucide-react";
 
@@ -11,8 +12,17 @@ export const Route = createFileRoute(
 });
 
 function WorkSpaceIdAdminPageComponents() {
+	const { isOpen } = useOpen();
+	const openPageWidth = 1096;
+	const closePageWidth = 1320;
+
 	return (
-		<main className="py-[36px] max-w-[1084px]">
+		<main
+			className="pt-8 ease-linear transition-width"
+			style={{
+				width: isOpen ? `${openPageWidth}px` : `${closePageWidth}px`,
+			}}
+		>
 			<Tabs defaultValue="workspace">
 				<TabsList>
 					<TabsTrigger value="workspace" className="flex gap-[4px]">
