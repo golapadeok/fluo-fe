@@ -11,7 +11,6 @@ import {
 interface TaskHoverContextType {
 	hoveredTaskId: string | undefined;
 	setHoveredTaskId: Dispatch<SetStateAction<string | undefined>>;
-	taskLabelColor:string[];
 }
 
 interface TaskDataInfo {
@@ -47,7 +46,7 @@ export const useTaskHover = () => {
 
 const Schedule = () => {
 	const [hoveredTaskId, setHoveredTaskId] = useState<string | undefined>();
-	const taskLabelColor = ['red','orange','yellow','green','blue']
+	const taskLabelColor = ["red", "orange", "yellow", "green", "blue"];
 	const mockTasks: Task[] = [
 		{
 			taskId: "1",
@@ -56,7 +55,7 @@ const Schedule = () => {
 				creator: "user_01",
 				title: "프로젝트 기획안 작성",
 				description: "2024년 신규 프로젝트 기획안을 작성합니다.",
-				priority: 1,
+				priority: 0,
 				isPrivate: false,
 			},
 			dateInfo: {
@@ -72,7 +71,7 @@ const Schedule = () => {
 				title: "마케팅 전략 보고서 제출",
 				description:
 					"2024년 상반기 마케팅 전략에 대한 최종 보고서를 제출합니다.",
-				priority: 2,
+				priority: 1,
 				isPrivate: false,
 			},
 			dateInfo: {
@@ -88,7 +87,7 @@ const Schedule = () => {
 				title: "새로운 UI 디자인 개발",
 				description:
 					"사용자 경험을 개선하기 위한 새로운 UI 디자인을 개발합니다.",
-				priority: 3,
+				priority: 2,
 				isPrivate: false,
 			},
 			dateInfo: {
@@ -131,15 +130,15 @@ const Schedule = () => {
 	];
 
 	const tasksWithColor = mockTasks.map((task, index) => {
-  const color = taskLabelColor[index % taskLabelColor.length];
-  return {
-    ...task,
-    color,
-  };
-});
+		const color = taskLabelColor[index % taskLabelColor.length];
+		return {
+			...task,
+			color,
+		};
+	});
 
 	return (
-		<TaskHoverContext.Provider value={{ hoveredTaskId, setHoveredTaskId, taskLabelColor }}>
+		<TaskHoverContext.Provider value={{ hoveredTaskId, setHoveredTaskId }}>
 			<div className="flex gap-4 p-5 w-[1320px] h-[823px] bg-zinc-100 rounded-xl">
 				<SchedulCalendar tasks={tasksWithColor} />
 				<div className="flex flex-col space-y-4 w-[300px]">

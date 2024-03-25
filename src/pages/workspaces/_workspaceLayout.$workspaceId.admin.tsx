@@ -1,5 +1,6 @@
 import WorkspaceAdminContent from "@/core/workspace/ui/AdminContent";
 import MemberSettingContent from "@/core/workspace/ui/MemberSettingContent";
+import RoleListContent from "@/core/workspace/ui/RoleListContent";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/lib/ui/tabs";
 import { useOpen } from "@/pages/workspaces/_workspaceLayout";
 import { createFileRoute } from "@tanstack/react-router";
@@ -47,7 +48,7 @@ function WorkSpaceIdAdminPageComponents() {
 							height={18}
 							className="h-[1.125rem] w-[1.125rem]"
 						/>
-						권한 설정
+						역할 설정
 					</TabsTrigger>
 				</TabsList>
 				<TabsContent value="workspace" className="mt-0 pt-[20px]">
@@ -57,7 +58,7 @@ function WorkSpaceIdAdminPageComponents() {
 					<MemberSettingContent />
 				</TabsContent>
 				<TabsContent value="credential" className="mt-0 pt-[20px]">
-					권한 설정
+					<RoleListContent />
 				</TabsContent>
 			</Tabs>
 		</main>

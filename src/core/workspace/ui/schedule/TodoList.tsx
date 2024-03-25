@@ -3,18 +3,15 @@ import { useOpen } from "@/pages/workspaces/_workspaceLayout";
 import { format } from "date-fns";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-export interface TaskWithColor extends Task {
-	color: string;
-}
-
 const TodoItem = ({
 	dateInfo,
 	taskId,
-	taskInfo: { title },
-	color,
-}: TaskWithColor) => {
+	taskInfo: { title, priority },
+}: Task) => {
 	const { setHoveredTaskId } = useTaskHover();
-	const { isOpen } = useOpen();
+	const isOpen = useOpen();
+
+	const priorityColor = ["red", "orange", "yellow", "green", "blue"];
 	return (
 		<div
 			className={`flex items-center justify-between py-2 border bg-white rounded-lg transition-all ease-linear ${
@@ -29,11 +26,15 @@ const TodoItem = ({
 				}`}
 			>
 				{isOpen ? (
-					<div className={`h-6 w-6 bg-${color}-500 rounded-full`} />
+					<div
+						className={`h-6 w-6 bg-${priorityColor[priority]}-500 rounded-full`}
+					/>
 				) : (
 					<>
 						<div className="flex items-center">
-							<div className={`w-1 h-8 bg-${color}-500 ml-1 mr-2`} />
+							<div
+								className={`w-1 h-8 bg-${priorityColor[priority]}-500 ml-1 mr-2`}
+							/>
 							<span className="text-sm font-semibold whitespace-nowrap">
 								{title}
 							</span>
@@ -49,8 +50,9 @@ const TodoItem = ({
 	);
 };
 
-const TodoList = ({ tasks }: { tasks: TaskWithColor[] }) => {
-	const { isOpen } = useOpen();
+const TodoList = ({ tasks }: { tasks: Task[] }) => {
+	const isOpen = useOpen();
+
 	return (
 		<div
 			className={`flex flex-col items-center h-full ease-linear bg-white rounded-lg transition-width ${
@@ -83,7 +85,7 @@ const TodoList = ({ tasks }: { tasks: TaskWithColor[] }) => {
 				</div>
 			</header>
 			<div className="flex flex-col mt-6 gap-y-3">
-				{tasks.map((task: TaskWithColor) => {
+				{tasks.map((task: Task) => {
 					return <TodoItem key={task.taskId} {...task} />;
 				})}
 			</div>
