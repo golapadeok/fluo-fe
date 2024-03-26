@@ -28,7 +28,7 @@ function MemberDropDown() {
 		>
 			<DropdownMenuTrigger asChild>
 				<button type="button">
-					<div className="flex justify-center items-center gap-[4px] px-[6px] py-[4px] rounded-2xl bg-bg-secondary text-zinc-400 text-text-md">
+					<div className="flex justify-center items-center gap-[4px] px-[6px] py-[4px] rounded-2xl bg-main-100 border-solid border-main-600 border-[1px] text-main-600 text-text-md">
 						<span className="flex justify-center items-center w-[24px] h-[24px] rounded-full bg-bg-primary">
 							<Users className="w-4 h-4" />
 						</span>
