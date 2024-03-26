@@ -66,13 +66,19 @@ module.exports = {
 				sub: {
 					white: "#FFFFFF",
 					black: "#000000",
-					red: "#FF3B30",
+					red: "var(--sub-red)",
 					yellow: "#FFCC00",
 					green: "#34C759",
 					blue: "#007AFF",
 				},
 				placeholder: "#71717a",
-				error: "#DC2626",
+				error: {
+					base: "var(--error)",
+					strong: "var(--error-strong)",
+					hover: "var(--error-strong-hover)",
+					active: "var(--error-strong-active)",
+					muted: "var(--error-muted)",
+				},
 			},
 			/** 스타일 가이드의 effect 부분(1,2,3,4)
 			 * shadow-1,2,3,4와 같은식으로 사용

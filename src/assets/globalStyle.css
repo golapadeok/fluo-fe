@@ -42,6 +42,14 @@
     --main-500: #6366F1;
     --main-600: #4F46E5;
     --main-700: #4338CA;
+
+    --error: #DC2626;
+    --error-strong: #DC2626;
+    --error-strong-hover: #B91C1C;
+    --error-strong-active: #DC2626;
+    --error-muted: #FEF2F2;
+
+    --sub-red: #FF3B30;
   }
  
   .dark {
