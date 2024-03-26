@@ -5,18 +5,18 @@ import * as React from "react";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-	"inline-flex items-center justify-center whitespace-nowrap rounded-lg transition-colors focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50",
+	"inline-flex items-center justify-center whitespace-nowrap rounded-lg transition-all focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50",
 	{
 		variants: {
 			variant: {
 				primary:
-					"bg-main-600 text-sub-white focus-visible:bg-main-800 hover:bg-main-800",
+					"bg-main-600 text-sub-white focus-visible:bg-main-800 hover:bg-main-800 active:bg-main-800",
 				secondary:
-					"bg-main-100 text-main-600 focus-visible:bg-main-200 hover:bg-main-200",
+					"bg-main-100 text-main-600 focus-visible:bg-main-200 hover:bg-main-200 active:bg-main-200",
 				outline:
 					"bg-white shadow-[0_0_0_1px_var(--main-600)] text-main-600 border focus-visible:bg-bg-secondary hover:bg-bg-secondary",
 				ghost:
-					"bg-transparent text-zinc-400 hover:bg-zinc-200 hover:text-black focus-visible:bg-zinc-200",
+					"bg-transparent text-zinc-400 hover:bg-zinc-200 hover:text-black focus-visible:bg-zinc-200 active:bg-zinc-200 active:text-black",
 			},
 			text: {
 				default: "text-sm font-semibold",
