@@ -34,8 +34,14 @@
     --input: 220 13% 91%;
     --ring: 224 71.4% 4.1%;
 
+    --main-50: #EEF2FF;
+    --main-100: #E0E7FF;
+    --main-200: #C7D2FE;
+    --main-300: #A5B4FC;
+    --main-400: #818CF8;
     --main-500: #6366F1;
     --main-600: #4F46E5;
+    --main-700: #4338CA;
   }
  
   .dark {
