@@ -4,7 +4,7 @@ import { CalendarClockIcon, User } from "lucide-react";
 
 const Task = () => {
   return (
-    <div className="flex flex-col justify-between px-4 py-[18px] rounded bg-[#E7E7E7] w-[296px] h-32">
+    <div className="flex flex-col justify-between px-4 py-[18px] rounded bg-[#E7E7E7] w-full h-32">
       <div className="flex justify-between">
         <div>
           <div className="py-0.5 px-2 rounded-[3px] bg-zinc-400 text-xs text-white">#Design</div>

@@ -2,7 +2,7 @@ import StatusColumn from "@/core/task/ui/StatusColumn";
 
 const BoardView = () => {
   return (
-    <div className="flex gap-[22px] w-full overflow-scroll bg-white rounded-md px-1 py-1">
+    <div className="flex flex-nowrap gap-[18px] justify-evenly overflow-x-auto">
       <StatusColumn />
       <StatusColumn />
       <StatusColumn />
