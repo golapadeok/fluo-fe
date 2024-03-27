@@ -32,6 +32,29 @@ function AdminContent() {
 			<div className="w-full flex flex-col gap-[40px] mt-[48px]">
 				<div>
 					<Label
+						htmlFor="name"
+						className="text-text-md font-semibold cursor-pointer"
+					>
+						워크스페이스 이름 설정
+						<span className="text-sub-red">*</span>
+					</Label>
+					<div className="mt-[16px] flex gap-[16px] items-center">
+						<Input
+							id="name"
+							name="name"
+							placeholder="워크스페이스 이름 입력"
+							className="min-w-[320px] h-[40px] py-[8px] px-[12px] placeholder:font-normal"
+						/>
+						<Button
+							variant="primary"
+							className="h-[40px] text-text-sm text-sub-white"
+						>
+							저장하기
+						</Button>
+					</div>
+				</div>
+				<div>
+					<Label
 						htmlFor="thumbnail"
 						className="text-text-md font-semibold cursor-pointer"
 					>
@@ -72,29 +95,6 @@ function AdminContent() {
 								기본 이미지로 재설정
 							</Button>
 						</div>
-					</div>
-				</div>
-				<div>
-					<Label
-						htmlFor="name"
-						className="text-text-md font-semibold cursor-pointer"
-					>
-						워크스페이스 이름 설정
-						<span className="text-sub-red">*</span>
-					</Label>
-					<div className="mt-[16px] flex gap-[16px] items-center">
-						<Input
-							id="name"
-							name="name"
-							placeholder="워크스페이스 이름 입력"
-							className="min-w-[320px] h-[40px] py-[8px] px-[12px] placeholder:font-normal"
-						/>
-						<Button
-							variant="primary"
-							className="h-[40px] text-text-sm text-sub-white"
-						>
-							저장하기
-						</Button>
 					</div>
 				</div>
 				<div>
