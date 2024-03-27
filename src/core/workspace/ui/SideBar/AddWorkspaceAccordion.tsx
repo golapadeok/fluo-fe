@@ -5,6 +5,7 @@ import {
 	AccordionItem,
 	AccordionTrigger,
 } from "@/lib/ui/accordion";
+import { Link } from "@tanstack/react-router";
 import { ChevronRight, ListPlus } from "lucide-react";
 import { useState } from "react";
 
@@ -44,9 +45,12 @@ function AddWorkspaceAccordion() {
 							</button>
 						}
 					/>
-					<div className="flex items-center p-1.5 text-zinc-400 text-text-xs font-semibold pl-[30px]">
+					<Link
+						to="/workspaces"
+						className="flex items-center p-1.5 text-zinc-400 text-text-xs font-semibold pl-[30px]"
+					>
 						초대 받은 워크스페이스
-					</div>
+					</Link>
 				</AccordionContent>
 			</AccordionItem>
 		</Accordion>
