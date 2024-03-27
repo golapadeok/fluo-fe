@@ -12,7 +12,7 @@ const Task = () => {
           </div>
           <PriorityRating priority={4} />
         </div>
-        <div className="text-xs font-semibold">업무 제목</div>
+        <div className="text-xs font-semibold text-start">업무 제목</div>
       </div>
       <div className="flex justify-between">
         <div>
