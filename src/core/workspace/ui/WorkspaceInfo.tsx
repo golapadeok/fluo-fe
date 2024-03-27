@@ -4,7 +4,34 @@ import { Label } from "@/lib/ui/label";
 import { Upload } from "lucide-react";
 import { type ChangeEvent, useState } from "react";
 
-function WorkspaceImageUpload() {
+function Title() {
+	return (
+		<div>
+			<Label
+				htmlFor="workspaceTitle"
+				className="text-text-md font-semibold cursor-pointer after:content-['*'] after:text-sub-red"
+			>
+				워크스페이스 이름 설정
+			</Label>
+			<div className="mt-[16px] flex gap-[16px] items-center">
+				<Input
+					id="workspaceTitle"
+					name="title"
+					placeholder="워크스페이스 이름 입력"
+					className="min-w-[320px] h-[40px] py-[8px] px-[12px] placeholder:font-normal"
+				/>
+				<Button
+					variant="primary"
+					className="h-[40px] text-text-sm text-sub-white"
+				>
+					저장하기
+				</Button>
+			</div>
+		</div>
+	);
+}
+
+function Image() {
 	const [thumbnail, setThumbnail] = useState("");
 
 	const handleChangeThumbnail = async (e: ChangeEvent<HTMLInputElement>) => {
@@ -69,4 +96,18 @@ function WorkspaceImageUpload() {
 	);
 }
 
-export default WorkspaceImageUpload;
+function CreatedDate() {
+	return (
+		<div>
+			<h5 className="text-text-md font-semibold">워크스페이스 생성 날짜</h5>
+			<div className="mt-[16px] text-text-md font-normal text-zinc-500">
+				2024.04.08
+			</div>
+		</div>
+	);
+}
+
+export const WorkspaceInfo = {
+	Editable: { Title, Image },
+	UnEditable: { CreatedDate },
+};
