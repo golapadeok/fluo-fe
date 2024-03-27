@@ -1,8 +1,10 @@
-import { Modal } from "@/core/workspace/ui/Modal";
-import { Button } from "@/lib/ui/button";
-
+import {
+	RoleCreateDialog,
+	RoleModifyDialog,
+	RoleDeleteDialog,
+} from "@/core/workspace/ui/dialog";
 import { useOpen } from "@/pages/workspaces/_workspaceLayout";
-import { ChevronDown, Pencil, PlusIcon, X } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import { useLayoutEffect, useRef, useState } from "react";
 
 interface RoleItemProps {
@@ -10,57 +12,14 @@ interface RoleItemProps {
 	length: number;
 }
 
-//constants
-const INIT_ITEM_HEIGHT = 48;
-
 const RoleBadge: React.FC<{ name: string }> = ({ name }) => (
 	<div className="py-1 px-2.5 rounded-2xl bg-main-100 items-center text-center text-main-600 font-semibold whitespace-nowrap h-8 w-[206px] mb-5">
 		{name}
 	</div>
 );
 
-const RoleModifyModal = () => {
-	return (
-		<>
-			<div className="flex flex-col">
-				<label htmlFor="roleName" className="pb-3 font-semibold text-text-md">
-					역할 이름
-				</label>
-				<input
-					id="roleName"
-					className="border-zinc-300 border rounded-[10px] py-3 pl-4 h-11 text-sm focus:outline-main-400"
-					placeholder="역할 이름을 입력해 주세요."
-				/>
-			</div>
-			<div className="flex flex-col">
-				<label htmlFor="roleDesc" className="pb-3 font-semibold text-text-md">
-					역할 설명
-				</label>
-				<input
-					id="roleDesc"
-					className="border-zinc-300 border rounded-[10px] py-3 pl-4 h-11 text-sm focus:outline-main-400"
-					placeholder="추가할 역할에 대한 설명을 입력해주세요."
-				/>
-			</div>
-			<div className="flex flex-col">
-				<label
-					htmlFor="permissions"
-					className="pb-3 font-semibold text-text-md"
-				>
-					권한 목록
-				</label>
-				<div className="border-zinc-300 border rounded-[10px] py-3 pl-4 text-sm items-center gap-3 grid grid-cols-2">
-					{Array.from({ length: 10 }).map(() => (
-						<div>
-							<input type="checkbox" className="mr-2 cursor-pointer" />
-							<span className="text-text-sm">그룹 삭제</span>
-						</div>
-					))}
-				</div>
-			</div>
-		</>
-	);
-};
+//constants
+const INIT_ITEM_HEIGHT = 48;
 
 const RoleItem: React.FC<RoleItemProps> = ({ length }) => {
 	const [isOverFlow, setIsOverFlow] = useState(false);
@@ -91,32 +50,9 @@ const RoleItem: React.FC<RoleItemProps> = ({ length }) => {
 						{length}
 					</div>
 				</div>
-				<div className="flex gap-2 text-zinc-400">
-					<Modal>
-						<Modal.Trigger>
-							<Pencil />
-						</Modal.Trigger>
-						<Modal.Portal>
-							<Modal.Overlay>
-								<Modal.Contents className="w-[760px]">
-									<Modal.Header>
-										<span className="text-title-sm">역할 수정하기</span>
-										<Modal.CloseButton />
-									</Modal.Header>
-									<RoleModifyModal />
-									<Modal.Footer>
-										<Button variant="outline" size="lg">
-											취소하기
-										</Button>
-										<Button variant="primary" size="lg">
-											저장하기
-										</Button>
-									</Modal.Footer>
-								</Modal.Contents>
-							</Modal.Overlay>
-						</Modal.Portal>
-					</Modal>
-					<X />
+				<div className="flex gap-6 text-zinc-400">
+					<RoleModifyDialog />
+					<RoleDeleteDialog />
 				</div>
 			</header>
 			<section className="relative pt-[19px] flex items-center">
@@ -159,7 +95,7 @@ const RoleItem: React.FC<RoleItemProps> = ({ length }) => {
 	);
 };
 
-const RoleListContent = () => {
+const RoleSettingContent = () => {
 	return (
 		<div className="flex flex-col h-full gap-4 p-8 bg-white rounded-[10px]">
 			<header className="flex items-center justify-between w-full mb-8">
@@ -169,10 +105,7 @@ const RoleListContent = () => {
 						해당 워크스페이스의 역할을 설정하고 편집할 수 있습니다.
 					</span>
 				</div>
-				<Button variant={"primary"} size={"xl"} className="gap-2">
-					<PlusIcon />
-					역할 생성하기
-				</Button>
+				<RoleCreateDialog />
 			</header>
 			<span className="text-text-xl">워크스페이스 내 역할 리스트</span>
 			<main className="flex flex-col h-full gap-6">
@@ -181,12 +114,9 @@ const RoleListContent = () => {
 				<RoleItem length={12} />
 				<RoleItem length={4} />
 				<RoleItem length={9} />
-				<RoleItem length={3} />
-				<RoleItem length={12} />
-				<RoleItem length={4} />
 			</main>
 		</div>
 	);
 };
 
-export default RoleListContent;
+export default RoleSettingContent;

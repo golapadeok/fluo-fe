@@ -1,6 +1,6 @@
 import WorkspaceAdminContent from "@/core/workspace/ui/AdminContent";
 import MemberSettingContent from "@/core/workspace/ui/MemberSettingContent";
-import RoleListContent from "@/core/workspace/ui/RoleListContent";
+import RoleSettingContent from "@/core/workspace/ui/RoleSettingContent";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/lib/ui/tabs";
 import { useOpen } from "@/pages/workspaces/_workspaceLayout";
 import { createFileRoute } from "@tanstack/react-router";
@@ -58,7 +58,7 @@ function WorkSpaceIdAdminPageComponents() {
 					<MemberSettingContent />
 				</TabsContent>
 				<TabsContent value="credential" className="mt-0 pt-[20px]">
-					<RoleListContent />
+					<RoleSettingContent />
 				</TabsContent>
 			</Tabs>
 		</main>
