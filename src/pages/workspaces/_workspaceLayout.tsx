@@ -29,7 +29,7 @@ function WorkSpaceLayoutComponent() {
             id: workspaceId,
           }}
         />
-        <main className={`max-w-[1320px] m-auto ${isOpen ? "pl-[223px]" : "pl-0"} transition-all ease-linear`}>
+        <main className={`max-w-[1320px] m-auto ${isOpen ? "pl-[224px]" : "pl-0"} transition-all ease-linear`}>
           <Outlet />
         </main>
       </div>

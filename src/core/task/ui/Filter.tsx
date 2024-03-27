@@ -4,7 +4,8 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { Button } from "@/lib/ui/button";
 import { Input } from "@/lib/ui/input";
 import { Separator } from "@/lib/ui/separator";
-import { FilterIcon, SearchIcon } from "lucide-react";
+import { SearchIcon } from "lucide-react";
+import FilterSvg from "@/assets/filter.svg";
 
 const Filter = () => {
   return (
@@ -12,13 +13,13 @@ const Filter = () => {
       <AccordionItem value="filter">
         <div className="flex gap-2 w-full">
           <div className="relative grow">
-            <SearchIcon className="absolute top-[14px] left-6" />
-            <Input className="bg-white indent-10 w-full border-zinc-400" placeholder="검색하기" />
+            <SearchIcon className="absolute top-[14px] left-6 text-zinc-400" />
+            <Input className="bg-white indent-10 w-full border border-zinc-300 focus:border-indigo-600" placeholder="검색하기" />
           </div>
           <AccordionTrigger asChild className=" transition-none [&[data-state=open]>svg]:rotate-0">
-            <Button variant="ghost" className="border border-zinc-400 py-[14px]">
-              <FilterIcon className="w-5 h-5 mr-2" />
-              Filter
+            <Button variant="secondary" className="bg-white border border-zinc-300 py-3 flex items-center hover:border-indigo-600 hover:text-black">
+              <img src={FilterSvg} alt="필터 아이콘" className="w-5 h-5 mr-2" />
+              <span className="text-black text-base font-semibold">Filter</span>
             </Button>
           </AccordionTrigger>
         </div>
@@ -32,7 +33,7 @@ const Filter = () => {
                 </div>
                 <div className="flex gap-4 justify-center items-center">
                   <label htmlFor="priority">중요도</label>
-                  <PrioritySelect />
+                  <PrioritySelect triggerClassnames="w-[180px]" />
                 </div>
                 <div className="flex gap-4 justify-center items-center">
                   <label htmlFor="status">상태</label>

@@ -7,6 +7,7 @@ const BoardView = () => {
       <StatusColumn />
       <StatusColumn />
       <StatusColumn />
+      <StatusColumn />
     </div>
   );
 };

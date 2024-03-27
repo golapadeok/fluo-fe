@@ -1,10 +1,10 @@
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/lib/ui/select";
 import PriorityRating from "@/core/task/ui/PriorityRating";
 
-const PrioritySelect = () => {
+const PrioritySelect = ({ triggerClassnames }: { triggerClassnames?: string }) => {
   return (
     <Select>
-      <SelectTrigger className="w-[180px]">
+      <SelectTrigger className={`${triggerClassnames}`}>
         <SelectValue placeholder="중요도" />
       </SelectTrigger>
       <SelectContent className="bg-white">
