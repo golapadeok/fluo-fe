@@ -2,9 +2,24 @@ import { Button } from "@/lib/ui/button";
 import { Input } from "@/lib/ui/input";
 import { Label } from "@/lib/ui/label";
 import { Trash2, Upload } from "lucide-react";
+import { type ChangeEvent, useState } from "react";
 
 function AdminContent() {
-	const thumbnail = "";
+	const [thumbnail, setThumbnail] = useState("");
+
+	const handleChangeThumbnail = async (e: ChangeEvent<HTMLInputElement>) => {
+		const fileList = e.target.files;
+		if (!fileList) return;
+
+		const reader = new FileReader();
+		reader.readAsDataURL(fileList[0]);
+		reader.onload = (e) => {
+			const target = e.target;
+			if (!target) return;
+			const { result } = target;
+			setThumbnail(result as string);
+		};
+	};
 
 	return (
 		<div className="relative bg-bg-primary rounded-[20px] p-[32px] min-h-[848px]">
@@ -20,7 +35,7 @@ function AdminContent() {
 						htmlFor="thumbnail"
 						className="text-text-md font-semibold cursor-pointer"
 					>
-						워크스페이스 대표 사진 등록
+						워크스페이스 이미지 설정
 					</Label>
 					<div className="flex items-center gap-[24px]">
 						<Label
@@ -32,7 +47,6 @@ function AdminContent() {
 								<img
 									src={thumbnail}
 									alt="워크스페이스 썸네일"
-									fetchPriority="high"
 									width={512}
 									height={512}
 									className="object-cover"
@@ -48,7 +62,7 @@ function AdminContent() {
 							tabIndex={-1}
 							accept="image/*"
 							className="w-0 h-0 p-0 m-0 border-0 shadow-none hidden"
-							onChange={(e) => console.log(e)}
+							onChange={handleChangeThumbnail}
 						/>
 						<div className="flex flex-col gap-[16px]">
 							<Button variant="primary" className="py-[8px] px-[12px] h-[40px]">
