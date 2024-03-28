@@ -26,14 +26,14 @@ module.exports = {
 				foreground: "hsl(var(--foreground))",
 				/** main-50과 같은 방식으로 사용 */
 				main: {
-					50: "#EEF2FF",
-					100: "#E0E7FF",
-					200: "#C7D2FE",
-					300: "#A5B4FC",
-					400: "#818CF8",
+					50: "var(--main-50)",
+					100: "var(--main-100)",
+					200: "var(--main-200)",
+					300: "var(--main-300)",
+					400: "var(--main-400)",
 					500: "var(--main-500)",
 					600: "var(--main-600)",
-					700: "#4338CA",
+					700: "var(--main-700)",
 					800: "#3730A3",
 					900: "#312E81",
 					950: "#1E1B4B",
@@ -66,10 +66,18 @@ module.exports = {
 				sub: {
 					white: "#FFFFFF",
 					black: "#000000",
-					red: "#FF3B30",
+					red: "var(--sub-red)",
 					yellow: "#FFCC00",
 					green: "#34C759",
 					blue: "#007AFF",
+				},
+				placeholder: "#71717a",
+				error: {
+					base: "var(--error)",
+					strong: "var(--error-strong)",
+					hover: "var(--error-strong-hover)",
+					active: "var(--error-strong-active)",
+					muted: "var(--error-muted)",
 				},
 			},
 			/** 스타일 가이드의 effect 부분(1,2,3,4)
@@ -107,6 +115,10 @@ module.exports = {
 			animation: {
 				"accordion-down": "accordion-down 0.2s ease-out",
 				"accordion-up": "accordion-up 0.2s ease-out",
+			},
+			transitionProperty: {
+				height: "height",
+				width: "width",
 			},
 		},
 	},

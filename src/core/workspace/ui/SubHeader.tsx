@@ -1,6 +1,6 @@
+import MemberDropDown from "@/core/workspace/ui/MemberDropDown";
 import { Link } from "@tanstack/react-router";
 import { ChevronsLeft, ChevronsRight, Settings } from "lucide-react";
-import MemberDropDown from "@/core/workspace/ui/MemberDropDown";
 
 type SubHeaderProps = {
 	isOpen: boolean;
