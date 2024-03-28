@@ -1,8 +1,7 @@
+import SideBar from "@/core/workspace/ui/SideBar/SideBar";
+import SubHeader from "@/core/workspace/ui/SubHeader";
 import { Outlet, createFileRoute, getRouteApi } from "@tanstack/react-router";
 import { createContext, useContext, useState } from "react";
-import SubHeader from "@/core/workspace/ui/SubHeader";
-import SideBar from "@/core/workspace/ui/SideBar/SideBar";
-import GlobalNavBar from "@/core/user/ui/GlobalNavBar";
 
 export const Route = createFileRoute("/workspaces/_workspaceLayout")({
   component: WorkSpaceLayoutComponent,
@@ -22,7 +21,6 @@ function WorkSpaceLayoutComponent() {
   };
   return (
     <>
-      <GlobalNavBar />
       <SideBar isOpen={!isOpen} />
       <div className="bg-white min-h-[100vh]">
         <SubHeader
@@ -34,7 +32,9 @@ function WorkSpaceLayoutComponent() {
           }}
         />
         <main className={`max-w-[1320px] m-auto ${isOpen ? "pl-[236px]" : "pl-0"} transition-all ease-linear`}>
-          <Outlet />
+          <OpenContext.Provider value={{ isOpen }}>
+            <Outlet />
+          </OpenContext.Provider>
         </main>
       </div>
     </>
