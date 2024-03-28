@@ -1,3 +1,4 @@
+import GlobalNavBar from "@/core/user/ui/GlobalNavBar";
 import SideBar from "@/core/workspace/ui/SideBar/SideBar";
 import SubHeader from "@/core/workspace/ui/SubHeader";
 import { Outlet, createFileRoute, getRouteApi } from "@tanstack/react-router";
@@ -21,6 +22,7 @@ function WorkSpaceLayoutComponent() {
   };
   return (
     <>
+      <GlobalNavBar />
       <SideBar isOpen={!isOpen} />
       <div className="bg-white min-h-[100vh]">
         <SubHeader
