@@ -14,7 +14,7 @@ function SubHeader({
 	workspaceData,
 }: SubHeaderProps) {
 	return (
-		<header className="w-full px-8 h-[60px] shrink-0 border-b-[zinc-50] border-b border-solid bg-bg-primary">
+		<div className="w-full px-8 h-[60px] shrink-0 border-b-[zinc-50] border-b border-solid bg-bg-primary">
 			<div className="max-w-[1320px] h-[60px] m-auto flex justify-between items-center">
 				<div
 					id="workspaceInfo"
@@ -37,7 +37,7 @@ function SubHeader({
 					</Link>
 				</div>
 			</div>
-		</header>
+		</div>
 	);
 }
 

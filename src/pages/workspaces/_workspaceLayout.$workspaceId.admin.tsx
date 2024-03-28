@@ -2,7 +2,6 @@ import WorkspaceAdminContent from "@/core/workspace/ui/AdminContent";
 import MemberSettingContent from "@/core/workspace/ui/MemberSettingContent";
 import RoleSettingContent from "@/core/workspace/ui/RoleSettingContent";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/lib/ui/tabs";
-import { useOpen } from "@/pages/workspaces/_workspaceLayout";
 import { createFileRoute } from "@tanstack/react-router";
 import { FileLock2Icon, UserRoundCogIcon } from "lucide-react";
 
@@ -13,17 +12,8 @@ export const Route = createFileRoute(
 });
 
 function WorkSpaceIdAdminPageComponents() {
-	const { isOpen } = useOpen();
-	const openPageWidth = 1096;
-	const closePageWidth = 1320;
-
 	return (
-		<main
-			className="pt-8 ease-linear transition-width"
-			style={{
-				width: isOpen ? `${openPageWidth}px` : `${closePageWidth}px`,
-			}}
-		>
+		<div className="pt-[133px] ease-linear transition-width">
 			<Tabs defaultValue="workspace">
 				<TabsList>
 					<TabsTrigger value="workspace" className="flex gap-[4px]">
@@ -61,7 +51,7 @@ function WorkSpaceIdAdminPageComponents() {
 					<RoleSettingContent />
 				</TabsContent>
 			</Tabs>
-		</main>
+		</div>
 	);
 }
 

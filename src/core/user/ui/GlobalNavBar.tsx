@@ -7,7 +7,7 @@ import { User } from "lucide-react";
 
 function GlobalNavBar() {
 	return (
-		<nav className="max-w-[1920px] w-full m-auto px-8 border-b-[1px] border-[#e8e8e8]">
+		<nav className="w-full px-8 border-b-[1px] border-[#e8e8e8]">
 			<div className="max-w-[1320px] m-auto flex items-center justify-between py-[17px]">
 				<img className="h-[38px]" src={LogoIcon} alt="로고" />
 				<Popover>
