@@ -1,13 +1,16 @@
 import { Outlet, createFileRoute, getRouteApi } from "@tanstack/react-router";
-import { useState } from "react";
+import { createContext, useContext, useState } from "react";
 import SubHeader from "@/core/workspace/ui/SubHeader";
 import SideBar from "@/core/workspace/ui/SideBar/SideBar";
+import GlobalNavBar from "@/core/user/ui/GlobalNavBar";
 
 export const Route = createFileRoute("/workspaces/_workspaceLayout")({
   component: WorkSpaceLayoutComponent,
 });
 
 const routeApi = getRouteApi("/workspaces/_workspaceLayout/$workspaceId/");
+
+const OpenContext = createContext<{ isOpen: boolean } | null>(null);
 
 function WorkSpaceLayoutComponent() {
   const routeParams = routeApi.useParams();
@@ -18,9 +21,10 @@ function WorkSpaceLayoutComponent() {
     setIsOpen(!isOpen);
   };
   return (
-    <div className="grid grid-cols-a">
+    <>
+      <GlobalNavBar />
       <SideBar isOpen={!isOpen} />
-      <div className="min-h-[100vh]">
+      <div className="bg-bg-secondary min-h-[100vh]">
         <SubHeader
           isOpen={isOpen}
           onClickChevronButton={handleToggleSidebar}
@@ -29,12 +33,20 @@ function WorkSpaceLayoutComponent() {
             id: workspaceId,
           }}
         />
-        <main className={`max-w-[1320px] m-auto ${isOpen ? "pl-[224px]" : "pl-0"} transition-all ease-linear`}>
+        <main className={`max-w-[1320px] m-auto ${isOpen ? "pl-[236px]" : "pl-0"} transition-all ease-linear`}>
           <Outlet />
         </main>
       </div>
-    </div>
+    </>
   );
 }
 
 export default WorkSpaceLayoutComponent;
+
+export function useOpen() {
+  const context = useContext(OpenContext);
+  if (!context) {
+    throw new Error("useOpen must be used within an AuthProvider");
+  }
+  return context;
+}
