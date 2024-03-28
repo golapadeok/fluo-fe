@@ -60,4 +60,21 @@ export const handlers = [
 			status: 200,
 		});
 	}),
+	http.get("/files/images/:workspaceId", ({ params }) => {
+		const { workspaceId } = params;
+
+		if (!workspaceId) return HttpResponse.error();
+
+		return HttpResponse.json({
+			message: "성공했습니다",
+		});
+	}),
+	http.delete("/files/images/:workspaceId", ({ params }) => {
+		const { workspaceId } = params;
+		if (!workspaceId) return HttpResponse.error();
+
+		return HttpResponse.json({
+			message: "삭제 완료",
+		});
+	}),
 ];
