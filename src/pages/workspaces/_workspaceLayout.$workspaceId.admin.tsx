@@ -1,6 +1,8 @@
 import WorkspaceAdminContent from "@/core/workspace/ui/AdminContent";
 import MemberSettingContent from "@/core/workspace/ui/MemberSettingContent";
+import RoleSettingContent from "@/core/workspace/ui/RoleSettingContent";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/lib/ui/tabs";
+import { useOpen } from "@/pages/workspaces/_workspaceLayout";
 import { createFileRoute } from "@tanstack/react-router";
 import { FileLock2Icon, UserRoundCogIcon } from "lucide-react";
 
@@ -11,8 +13,17 @@ export const Route = createFileRoute(
 });
 
 function WorkSpaceIdAdminPageComponents() {
+	const { isOpen } = useOpen();
+	const openPageWidth = 1096;
+	const closePageWidth = 1320;
+
 	return (
-		<main className="py-[36px] max-w-[1084px]">
+		<main
+			className="pt-8 ease-linear transition-width"
+			style={{
+				width: isOpen ? `${openPageWidth}px` : `${closePageWidth}px`,
+			}}
+		>
 			<Tabs defaultValue="workspace">
 				<TabsList>
 					<TabsTrigger value="workspace" className="flex gap-[4px]">
@@ -37,7 +48,7 @@ function WorkSpaceIdAdminPageComponents() {
 							height={18}
 							className="h-[1.125rem] w-[1.125rem]"
 						/>
-						권한 설정
+						역할 설정
 					</TabsTrigger>
 				</TabsList>
 				<TabsContent value="workspace" className="mt-0 pt-[20px]">
@@ -47,7 +58,7 @@ function WorkSpaceIdAdminPageComponents() {
 					<MemberSettingContent />
 				</TabsContent>
 				<TabsContent value="credential" className="mt-0 pt-[20px]">
-					권한 설정
+					<RoleSettingContent />
 				</TabsContent>
 			</Tabs>
 		</main>
