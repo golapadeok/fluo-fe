@@ -19,7 +19,7 @@ function WorkSpaceIdAdminPageComponents() {
 
 	return (
 		<main
-			className="pt-8 ease-linear transition-width"
+			className="pt-[133px] ease-linear transition-width"
 			style={{
 				width: isOpen ? `${openPageWidth}px` : `${closePageWidth}px`,
 			}}
