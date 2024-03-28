@@ -1,7 +1,13 @@
 import GlobalNavBar from "@/core/user/ui/GlobalNavBar";
 import SideBar from "@/core/workspace/ui/SideBar/SideBar";
 import SubHeader from "@/core/workspace/ui/SubHeader";
-import { Outlet, createFileRoute, getRouteApi } from "@tanstack/react-router";
+import {
+	Outlet,
+	createFileRoute,
+	getRouteApi,
+	useChildMatches,
+} from "@tanstack/react-router";
+import clsx from "clsx";
 import { createContext, useContext, useState } from "react";
 
 export const Route = createFileRoute("/workspaces/_workspaceLayout")({
@@ -15,7 +21,14 @@ const OpenContext = createContext<{ isOpen: boolean } | null>(null);
 function WorkSpaceLayoutComponent() {
 	const routeParams = routeApi.useParams();
 	const { workspaceId } = routeParams;
+	const { routeId } = useChildMatches()[0];
+
 	const [isOpen, setIsOpen] = useState<boolean>(true);
+
+	const bg = clsx({
+		"bg-zinc-50": routeId === "/workspaces/_workspaceLayout/$workspaceId/admin",
+		"bg-bg-primary": routeId === "/workspaces/_workspaceLayout/$workspaceId/",
+	});
 
 	const handleToggleSidebar = () => {
 		setIsOpen(!isOpen);
@@ -35,7 +48,7 @@ function WorkSpaceLayoutComponent() {
 				/>
 			</header>
 			<SideBar isOpen={!isOpen} />
-			<div className="bg-white min-h-[100vh]">
+			<div className={`${bg} min-h-[100vh]`}>
 				<main
 					className={`max-w-[1320px] m-auto ${
 						isOpen ? "pl-[236px]" : "pl-0"
