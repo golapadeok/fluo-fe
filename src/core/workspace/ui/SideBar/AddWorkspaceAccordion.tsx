@@ -1,9 +1,11 @@
+import AddWorkspaceDialog from "@/core/workspace/ui/AddWorkspaceDialog";
 import {
 	Accordion,
 	AccordionContent,
 	AccordionItem,
 	AccordionTrigger,
 } from "@/lib/ui/accordion";
+import { Link } from "@tanstack/react-router";
 import { ChevronRight, ListPlus } from "lucide-react";
 import { useState } from "react";
 
@@ -33,12 +35,22 @@ function AddWorkspaceAccordion() {
 					<ChevronRight className="h-5 w-5 text-main-600 shrink-0 transition-transform duration-200" />
 				</AccordionTrigger>
 				<AccordionContent className="pt-1.5">
-					<div className="flex items-center p-1.5 text-zinc-400 text-text-xs font-semibold pl-[30px]">
-						워크스페이스 생성하기
-					</div>
-					<div className="flex items-center p-1.5 text-zinc-400 text-text-xs font-semibold pl-[30px]">
+					<AddWorkspaceDialog
+						trigger={
+							<button
+								type="button"
+								className="flex items-center p-1.5 text-zinc-400 text-text-xs font-semibold pl-[30px]"
+							>
+								워크스페이스 생성하기
+							</button>
+						}
+					/>
+					<Link
+						to="/workspaces"
+						className="flex items-center p-1.5 text-zinc-400 text-text-xs font-semibold pl-[30px]"
+					>
 						초대 받은 워크스페이스
-					</div>
+					</Link>
 				</AccordionContent>
 			</AccordionItem>
 		</Accordion>
