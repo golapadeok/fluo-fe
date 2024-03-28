@@ -6,12 +6,12 @@ import { Plus } from "lucide-react";
 
 const TaskTableView = () => {
   return (
-    <div className="px-5 bg-white rounded-md py-5">
+    <div>
       <Filter />
       <AddTaskDialog>
         <Button
           variant="primary"
-          className="w-full flex justify-center items-center border rounded-[10px]py-3 my-3 bg-white text-main-600 border-main-600 hover:bg-main-200"
+          className="w-full flex justify-center items-center border rounded-[10px]py-3 my-3 bg-white text-main-600 border-main-600 hover:bg-main-200 active:bg-main-200"
         >
           <Plus />
           업무 추가
