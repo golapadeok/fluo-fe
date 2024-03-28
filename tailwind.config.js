@@ -65,6 +65,7 @@ module.exports = {
           yellow: "#FFCC00",
           green: "#34C759",
           blue: "#007AFF",
+          orange: "#FF9500",
         },
         placeholder: "#71717a",
         error: {
