@@ -1,6 +1,7 @@
 import { Dialog, DialogContent, DialogOverlay, DialogTrigger } from "@/lib/ui/dialog";
 import { Avatar, AvatarFallback } from "@/lib/ui/avatar";
-import { Dot, Edit2, User } from "lucide-react";
+import { Dot, User } from "lucide-react";
+import { ReactComponent as Edit } from "@/assets/edit.svg";
 import type { ReactNode } from "react";
 import PriorityRating from "@/core/task/ui/PriorityRating";
 
@@ -11,7 +12,7 @@ const TaskDetailDialog = ({ children }: { children: ReactNode }) => {
       <DialogOverlay />
       <DialogContent className="w-[756px] py-[38px] px-9">
         <button type="button" className="absolute top-8 right-[76px]">
-          <Edit2 className="w-6 h-6" />
+          <Edit className="w-6 h-6" />
         </button>
         <div className="py-0.5 px-2 rounded-[3px] w-fit bg-zinc-300 text-xs text-white">#Design</div>
         <div className="flex flex-col gap-1 border-b border-zinc-400 py-5">

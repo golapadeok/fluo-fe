@@ -3,9 +3,9 @@ import { DatePicker } from "@/lib/ui/DatePicker";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/lib/ui/accordion";
 import { Button } from "@/lib/ui/button";
 import { Input } from "@/lib/ui/input";
-import { IoRefreshOutline } from "react-icons/io5";
+import { ReactComponent as Refresh } from "@/assets/refresh.svg";
 import { SearchIcon } from "lucide-react";
-import FilterSvg from "@/assets/filter.svg";
+import { ReactComponent as FilterIcon } from "@/assets/filter.svg";
 import { Select, SelectTrigger, SelectValue } from "@/lib/ui/select";
 import { Label } from "@/lib/ui/label";
 
@@ -19,9 +19,9 @@ const Filter = () => {
             <Input className="bg-white shadow-1 indent-10 w-full border border-zinc-300 focus:border-indigo-600" placeholder="검색하기" />
           </div>
           <AccordionTrigger asChild className=" transition-none [&[data-state=open]>svg]:rotate-0">
-            <Button variant="secondary" className="bg-white shadow-1 border border-zinc-300 py-3 flex items-center hover:border-indigo-600 hover:text-black">
-              <img src={FilterSvg} alt="필터 아이콘" className="w-5 h-5 mr-2" />
-              <span className="text-black text-base font-semibold">Filter</span>
+            <Button variant="secondary" className="bg-white shadow-1 border border-zinc-300 py-3 flex items-center hover:no-underline hover:border-indigo-600">
+              <FilterIcon className="w-6 h-6" fill="#A1A1AA" />
+              <p className="text-zinc-400 text-base font-semibold">Filter</p>
             </Button>
           </AccordionTrigger>
         </div>
@@ -36,9 +36,7 @@ const Filter = () => {
                   <Input id="project-name" className="bg-white h-10 grow" />
                 </div>
                 <div className="flex gap-3 items-center grow">
-                  <Label className="text-base font-semibold" htmlFor="status">
-                    상태
-                  </Label>
+                  <Label className="text-base font-semibold">상태</Label>
                   <Select>
                     <SelectTrigger>
                       <SelectValue placeholder="시작 전" />
@@ -46,15 +44,11 @@ const Filter = () => {
                   </Select>
                 </div>
                 <div className="flex gap-3 items-center grow">
-                  <Label className="text-base font-semibold" htmlFor="priority">
-                    중요도
-                  </Label>
+                  <Label className="text-base font-semibold">중요도</Label>
                   <PrioritySelect triggerClassnames="w-full" />
                 </div>
                 <div className="flex gap-3 items-center grow">
-                  <Label className="text-base font-semibold" htmlFor="date">
-                    기한
-                  </Label>
+                  <Label className="text-base font-semibold">기한</Label>
                   <DatePicker />
                 </div>
               </div>
@@ -75,7 +69,7 @@ const Filter = () => {
                 </div>
                 <div className="flex gap-8">
                   <Button variant="ghost" className="flex gap-2 py-2 rounded-md border border-zinc-300">
-                    <IoRefreshOutline className="w-5 h-5" />
+                    <Refresh className="w-6 h-6" fill="#A1A1AA" />
                     <span>재설정</span>
                   </Button>
                   <Button variant="primary" className="py-2.5">
