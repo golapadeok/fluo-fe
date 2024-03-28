@@ -21,7 +21,7 @@ function WorkSpaceIdAdminPageComponents() {
 							height={18}
 							className="h-[1.125rem] w-[1.125rem]"
 						/>
-						멤버 및 워크스페이스 설정
+						워크스페이스 설정
 					</TabsTrigger>
 					<TabsTrigger value="member" className="flex gap-[4px]">
 						<UserRoundCogIcon
