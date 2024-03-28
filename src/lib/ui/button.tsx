@@ -5,18 +5,22 @@ import * as React from "react";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center whitespace-nowrap rounded-lg transition-colors focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50",
+  "inline-flex items-center justify-center whitespace-nowrap rounded-lg transition-all focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {
-        primary: "bg-main-600 text-sub-white border focus-visible:bg-main-800 hover:bg-main-800",
-        secondary: "bg-main-100 text-main-600 focus-visible:bg-main-200 hover:bg-main-200",
-        outline: "bg-white shadow-[0_0_0_1px_var(--main-600)] text-main-600 border focus-visible:bg-bg-secondary hover:bg-bg-secondary",
-        ghost: "bg-transparent text-zinc-400 hover:bg-zinc-200 hover:text-black focus-visible:bg-zinc-200",
+        primary: "bg-main-600 text-sub-white focus-visible:bg-main-800 border hover:bg-main-800 active:bg-main-800",
+        secondary: "bg-main-100 text-main-600 focus-visible:bg-main-200 hover:bg-main-200 active:bg-main-200",
+        outline:
+          "bg-white shadow-[0_0_0_1px_var(--main-600)] text-main-600 border focus-visible:bg-bg-secondary hover:bg-bg-secondary active:bg-bg-secondary active:shadow-[0_0_0_1.5px_var(--main-600)]",
+        ghost: "bg-transparent text-zinc-400 hover:bg-zinc-200 hover:text-black focus-visible:bg-zinc-200 active:bg-zinc-200 active:text-black",
+        destructive: "bg-error-base text-sub-white hover:bg-error-hover focus-visible:bg-error-hover active:bg-error-active",
+        destructive_outline:
+          "bg-bg-primary shadow-[0_0_0_1px_var(--sub-red)] text-sub-red hover:bg-error-muted active:bg-error-muted active:shadow-[0_0_0_1.5px_var(--sub-red)] focus-visible:bg-error-muted focus-visible:shadow-[0_0_0_1.5px_var(--sub-red)]",
       },
       text: {
         default: "text-sm font-semibold",
-        md: "text-base font-bold",
+        md: "text-md font-bold",
       },
       size: {
         default: "py-3 px-4",
